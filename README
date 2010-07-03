@@ -1,0 +1,35 @@
+
+Create and manage custom facebook pages.
+
+Prototype functions:
+
+Render a custom page to display based on user.
+The page can be simple - will add better functions later.
+
+The service should ultimately be able to provide wrapper functionality
+around basic tasks like ajax calls, click events, etc and then
+render them in fb-applicable code.
+
+
+Services:
+----------
+
+  Static Content.
+    Upload arbitruary static content to display on init page.
+    
+  Image store
+    Stores and organizes images to be displayed
+    in various gallery formats or used on by one.
+  
+  Javascript.
+    Provide js functionalities based on what is allowed in fb.
+    
+  CSS
+    Possibly rendered inline but as minified string.
+    
+  Cache Optimized.
+    Fully cached pages should be output at all times,
+    yet pages remain fully editable and updateable.
+    
+  Helpers?
+    (installable modules that to basic specific tasks)

@@ -1,0 +1,20 @@
+fb_sig_is_admin: "1"
+fb_sig_profile_user: "131864086829765"
+fb_sig_in_profile_tab: "1"
+fb_sig_app_id: "129421017095211"  (aplanofattack app id)
+fb_sig_type: LOCAL_TECHNOLOGY_TELECOMMUNICATIONS_SERVICES
+fb_sig_page_added: "1"
+fb_sig_page_id: "131864086829765" (the facebook page id this this app is on)
+fb_sig_locale: en_US
+fb_sig_request_method: GET
+fb_sig_profile_id: "131864086829765"
+action: index
+fb_sig: 2a2a222d49f4d35062cc24c025008a5c
+fb_sig_in_new_facebook: "1"
+fb_sig_in_canvas: "1"
+fb_sig_added: "0"
+fb_sig_country: us
+fb_sig_is_fan: "0"
+controller: pages
+fb_sig_api_key: 89ace145ffac4fd47a206ca69ae82f3d   (aplanofattack apikey)
+fb_sig_time: "1278159335.3888"
