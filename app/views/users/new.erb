@@ -1,0 +1,22 @@
+
+<div class="right-half">
+  <h2>FREE while in beta!</h2>
+  <% form_for @user, :url => account_path do |f| %>
+    <%= f.error_messages %>
+    <%= render :partial => "form", :object => f %>
+    <fieldset>
+      <br/>
+      <%= f.submit "Register" %>
+    </fieldset>
+  <% end %>
+</div>
+
+<div class="left-half">
+  <h1>Sign Up Today!</h1>
+  <p>
+    The tastyink portable portfolio is $199 per year.
+  
+  </p>
+</div>
+
+

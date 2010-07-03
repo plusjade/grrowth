@@ -17,43 +17,6 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
 
-  def configure_layout
-    ( ['index','show'].include? action_name ) ? 'shop' : 'admin' 
-  end
-  
-
-  # helper for attaching assets to a profile.
-  def attach_helper(profile)
-    tally = 0
-    params[:asset].each do |asset|
-      @asset = Asset.find(asset)
-      next if @asset.nil?
-      tally += 1 if profile.assets.attach(@asset)
-    end
-
-    render :json =>
-    {
-      'status' => 'good',
-      'msg'    => "attached #{tally} images"
-    }  
-  end
-
-
-  # helper for detaching assets to a profile.
-  def detach_helper(profile)
-    tally = 0
-    params[:asset].each do |asset|
-      @asset = Asset.find(asset)
-      next if @asset.nil?
-      tally += 1 if profile.assets.detach_quick(@asset)
-    end
-    
-    render :json =>
-    {
-      'status' => 'good',
-      'msg'    => "detached #{tally} images"
-    }  
-  end
   
   
   private
