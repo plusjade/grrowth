@@ -1,5 +1,8 @@
 
-<div>
-  A custom fb page - GO!
+Some Pages:
 
-</div>
+<ul>
+<% @pages.each do |page| %>
+  <li><%= link_to page.name, page_path(page) %> <%= link_to '[edit]', edit_page_path(page) %></li>
+<% end %>
+</ul>
