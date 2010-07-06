@@ -1,30 +1,28 @@
 <% form_for @page do |f| %>
   <%= f.error_messages %>
-  
-  <div class="right-half">
-    <fieldset>
-      <%= f.label :body %><br />
-      <%= f.text_area :body %>
-    </fieldset>
-  </div>
-  
-  <div class="left-half">
- 
-    <fieldset class="buttons">
-      <button type="submit" class="positive">Save Changes</button>
-    </fieldset>
+  <fieldset class="buttons">
+    <button type="submit" class="positive">Save Changes</button>
+  </fieldset>
 
-    <fieldset>
-      <%= f.label :name %> <span class="star_req">*</span>
-      <br /><%= f.text_field :name, :rel => 'text_req' %>
-    </fieldset>
-    
-    <fieldset>
-      <%= f.label 'Facebook Page or Profile ID' %> <span class="star_req">*</span>
-      <br /><%= f.text_field :fb_sig_page_id, :rel => 'text_req' %>
-    </fieldset> 
+  <fieldset style="float:left">
+    <%= f.label :name %> <span class="star_req">*</span>
+    <br /><%= f.text_field :name, :rel => 'text_req' %>
+  </fieldset>
+  
+  <fieldset style="float:right">
+    <%= f.label 'Facebook Page or Profile ID' %> <span class="star_req">*</span>
+    <br /><%= f.text_field :fb_sig_page_id, :rel => 'text_req' %>
+  </fieldset> 
         
-  </div>
+  <fieldset style="clear:both">
+    <%= f.label :body %><br />
+    <%= f.text_area :body, :style => 'width:99%;height:400px;' %>
+  </fieldset>
+  
+ 
+
+
+        
 
 <% end %>
 

@@ -348,6 +348,7 @@ ul#artists-list li a.active {
 
 /* form elements
   ------------------------------------------------------------ */
+form input {padding:3px; border:1px solid #555; }
 form fieldset {margin-bottom:10px;}
 form textarea {width:90%;height:100px;}
 form label {font-size:14px;}

@@ -69,7 +69,7 @@ class PagesController < ApplicationController
       :conditions => { :user_id => current_user.id }
     )
     render :template =>
-      'Pages/edit',
+      'pages/edit',
       :layout => false,
       :locals => {:page => @page} if request.xhr?
   end
