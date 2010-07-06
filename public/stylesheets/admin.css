@@ -1,0 +1,632 @@
+/* facebox
+  ------------------------------------------------------------ */
+#facebox .b {background:url(/images/facebox/b.png);}
+#facebox .tl {
+  background:url(/images/facebox/fbx-border-sprite.png) 0 0;
+  width: 10px; height: 10px;
+}
+#facebox .tr {
+  background:url(/images/facebox/fbx-border-sprite.png) -10px 0;
+  width: 10px; height: 10px;
+}
+#facebox .bl {
+  background:url(/images/facebox/fbx-border-sprite.png) -20px 0;
+  width: 10px; height: 10px;
+}
+#facebox .br {
+  background:url(/images/facebox/fbx-border-sprite.png) -30px 0;
+  width: 10px; height: 10px;
+}
+#facebox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  text-align: left;
+}
+#facebox .popup {
+  position: relative;
+}
+#facebox table {
+  border-collapse: collapse;
+  /* ie 6 hack -- if the global table width is set to anything it could cause us issues*/
+  -width:0%;
+}
+#facebox td {
+  border-bottom: 0;
+  padding: 0;
+}
+#facebox .body {
+  padding: 10px;
+  background: #fff;
+  width: 600px;
+}
+#facebox .content {
+  overflow:hidden;
+}
+#facebox .loading {
+  text-align: center;
+  width: 370px;
+}
+#facebox .image {
+  text-align: center;
+}
+#facebox .footer {
+  border-bottom: 1px solid #DDDDDD;
+  padding-bottom: 5px;
+  margin-bottom:10px;
+  text-align: center;
+  overflow:hidden;
+}
+#facebox .footer a {float:right}
+#facebox .footer img {
+  vertical-align: middle;
+}
+#facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+  padding: 0;
+}
+#facebox_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+}
+.facebox_hide {
+  z-index:-100;
+}
+.facebox_overlayBG {
+  background-color: #000;
+  z-index: 99;
+}
+* html #facebox_overlay { /* ie6 hack */
+  position: absolute;
+  height: expression("document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px'");
+}
+
+/* top fixed admin bar
+  ------------------------------------------------------------ */
+table.top-bar{
+  position:fixed;
+  top:0;
+  width:960px;
+  height:25px;
+  background:#e9e9e9;
+  border:1px solid #ccc;
+  border-top:0;
+  z-index:99999999;
+  border-collapse:collapse;
+  -moz-border-radius-bottomleft:5px;
+  -moz-border-radius-bottomright:5px;
+  -webkit-border-bottom-left-radius:5px;
+  -webkit-border-bottom-right-radius:5px;
+}
+table.top-bar td{
+  height:20px;
+  overflow:hidden;
+}
+
+ul.admin-links {
+  list-style:none;
+  padding:5px;
+}
+ul.admin-links li {
+  display:inline;
+  margin-right:10px;
+}
+ul.admin-links li a {
+}
+
+/* the workspace 
+  ------------------------------------------------------------ */
+#the-workspace{
+  display:none;
+}
+.workspace-wrapper {
+  clear:both;
+  width:800px;
+  margin-bottom:20px;
+  min-height:90px;
+  overflow:hidden;
+}
+  ul.workspace-toolbar {
+    width:700px;
+    float:left;
+    list-style:none;
+    overflow:hidden;
+  }
+  ul.workspace-toolbar li {
+    float:left;
+  }
+  ul.workspace-toolbar li a{
+    padding:1px 6px;
+    display:block;  
+    margin-right:8px;
+    font-size:12px;
+    color:#fff;
+    background:#d1f0b9 url('/images/gradients.jpg') repeat-x 0px -205px;
+    text-decoration:none;
+    text-align:center;
+  }
+.workspace-wrapper ul.workspace-toolbar li a.disable {
+  color:#ccc;
+  background:#eee; 
+}
+.workspace-wrapper ul.workspace-toolbar li a:hover{
+  background:#111; 
+  color:#fff;
+}
+
+.workspace-wrapper .working-profile {
+  display:none;
+  background:#ffffcc;
+  border:2px solid #ffff99;
+  text-align:center;
+  color:#555;
+}
+.workspace-wrapper .working-profile img {
+  width:25px;
+  height:25px;
+  display:block;
+  margin:auto;
+  border:1px solid green;
+}
+
+div.working-assets {
+  min-height:65px;
+  padding:5px;
+  border:1px solid #999;
+  background:#eee;
+  list-style:none;
+}
+div.working-assets img {
+  display:block;
+  height:50px;
+  width:50px;
+  float:left;
+  margin:2px;
+  border:1px solid #333;
+}
+div.working-assets img.is-new {
+  -webkit-opacity:0.5;
+  -moz-opacity:0.5;
+  opacity:0.5;
+  border:1px solid #eee;
+}
+.upload-note {
+  width:600px;
+  margin:0 auto;
+  padding:1px 3px; 
+  background:#ffffcc;
+  text-align:center;
+}
+div.working-details {
+  clear:both;
+  padding:10px;
+}
+
+
+/* main tab navigation 
+  ------------------------------------------------------------ */
+ul#main-tabs {
+  clear:both;
+  list-style:none;
+  margin-top:50px;
+  padding-bottom:10px;
+  padding-left:20px;
+}
+ul#main-tabs li{ display:inline;}
+ul#main-tabs li a{
+  position:relative;
+  top:5px;
+  padding:10px 17px;
+  margin-right:5px;
+  -moz-border-radius-topleft:5px;
+  -moz-border-radius-topright:5px;
+  -webkit-border-top-left-radius:5px;
+  -webkit-border-top-right-radius:5px;
+  background:#eee;
+  border:1px solid #ddd;
+  border-bottom:0;
+  color: #666666;
+  font-size:13px;
+  text-decoration: none;
+  font-weight:bold;
+}
+ul#main-tabs li a:hover,
+ul#main-tabs li a.active{
+  padding:11px 17px;
+  background:#333;
+  border:0;
+  color:#fff; /* pink ff7676 */
+  text-decoration:none;
+  /* CSS 3 DROP SHADOW */
+  -moz-box-shadow: 1px -1px 4px #eee;
+  -webkit-box-shadow: 2px -2px 4px #eee;
+  box-shadow: 1px -1px 4px #eee;
+}
+
+.tab-content {
+  min-height:200px;
+}
+
+
+/* assets resources tab
+  ------------------------------------------------------------ */
+ul.asset-actions{
+  clear:both;
+  list-style:none;
+  padding-bottom:3px;
+}	
+ul.asset-actions li {
+  display:inline;
+  margin-right:10px;
+}
+ul#assets-wrapper { height:225px; overflow:auto; }
+ul#assets-wrapper li {
+  margin: 3px; float: left; 
+  width:50px; height:50px;
+  text-align: center;
+}
+ul#assets-wrapper img {
+  width:50px; height:50px;
+  background:#fff;
+  border:1px solid #555;
+  cursor:move;
+}  
+
+
+/* tattoos resource tab
+  ------------------------------------------------------------ */
+ul#tattoos-wrapper {
+  list-style:none;
+}	
+ul#tattoos-wrapper li {
+  float:left;
+  text-align:center;
+  display:inline;
+  margin:2px;
+  padding:5px;
+  height:100px;
+  overflow:hidden;
+  width:85px;
+  background:#eee;
+  border:1px solid #ccc;
+}
+ul#tattoos-wrapper li img {
+  display:block;
+  width:75px;
+  height:75px;
+  margin:0 auto 2px auto;
+  border:1px solid #333;
+  cursor:move;
+}
+
+/* artist and shop resources tab
+  ------------------------------------------------------------ */
+.artist-each, .shop-each {
+  width:150px;
+  float:left;
+  margin:10px;
+  padding:10px 0;
+  border:1px solid #ccc;
+  background:#eee;
+  text-align:center;
+}
+.artist-each img, .shop-each img {
+  width:75px;
+  height:75px;
+  display:block;
+  margin:auto;
+  border:1px solid #ccc;
+  cursor:move;
+}
+
+/* artist list */
+ul#artists-list {
+  margin-bottom:15px;
+}
+ul#artists-list li {
+  display:inline;
+  margin-right:10px;
+}
+ul#artists-list li a {
+  padding:4px 8px;
+  background:#ccc;
+  text-decoration:none;
+  color:#333;
+}
+ul#artists-list li a:hover,
+ul#artists-list li a.active {
+  background:#111;
+  color:#fff;
+}
+
+
+/* form elements
+  ------------------------------------------------------------ */
+form fieldset {margin-bottom:10px;}
+form textarea {width:90%;height:100px;}
+form label {font-size:14px;}
+div.left-pane{float:left; width:45%}
+div.right-pane {float:right; width:50%}
+.right-half { float:right; width:48%;}
+.left-half { width:48%;}
+.right-half img { width:75px; height:75px;}
+
+/* form buttons
+  ------------------------------------------------------------ */
+.buttons{overflow:auto;}
+button{cursor:hand; cursor:pointer;}
+.buttons a, .buttons button{
+  display:block; border:1px solid #999; 
+  background:#ccc;
+  text-align:center;
+  color:#999;
+  font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif; font-size:1em; line-height:130%; text-decoration:none; font-weight:bold; cursor:pointer; padding:5px 10px 6px 7px; /* Links */
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+}
+.buttons button{width:auto; overflow:visible; padding:4px 10px 3px 7px; /* IE6 */}
+.buttons button[type]{padding:5px 10px 5px 7px; /* Firefox */  line-height:17px; /* Safari */}
+*:first-child+html button[type]{padding:4px 10px 3px 7px; /* IE7 */}
+.buttons button img, .buttons a img{margin:0 3px -3px 0 !important; padding:0; border:none; width:16px;  height:16px;}
+
+/* STANDARD */
+button:hover, .buttons a:hover{
+color:#fff;
+}
+.buttons a:active{
+background:#6299c5; 
+color:#fff;
+}
+
+/* POSITIVE */
+button.positive, .buttons a.positive{
+color:#fff; background:#d1f0b9 url('/images/gradients.jpg') repeat-x 0px -205px; border:1px solid #bde99c;}
+.buttons a.positive:hover,
+button.positive:hover,
+.buttons a.positive:active{
+background:orange url('/images/gradients.jpg') repeat-x 0px -250px; border:1px solid orange; }
+
+/* NEGATIVE */
+.buttons a.negative, button.negative{background:#333 url('/images/gradients.jpg') repeat-x 0px -15px; border:1px solid #000; color:#fff;		}
+.buttons a.negative:hover, button.negative:hover{background-attachment:fixed; background:#d52020 url(../images/gradients.jpg) repeat-x 0px -465px; border:1px solid #cc0000; color:#fff;}
+.buttons a.negative:active{background-color:#d12f19; border:1px solid #d12f19; color:#fff;}
+
+/* form status stuff */
+fieldset span.star_req{color:red;}
+fieldset.field_error {padding:10px !important; background: #fad6d6 !important; -moz-border-radius:7px;-webkit-border-radius:7px;}
+fieldset span.error_msg { display: block; color: red; }
+
+
+/* bottom asset panel
+  ------------------------------------------------------------ */
+div.asset-panel {
+  position:fixed; top:0; width:100%; background:transparent; 
+  z-index:99999; font-size: 12px !important; font-family:verdana, arial, "sans serif" !important;
+  color:#333 !important; text-align:left !important;
+}
+div.asset-panel .actions{
+  position:relative; overflow:hidden; top:2px;
+}
+div.asset-panel .actions a {
+  display:block; height:28px;  float:right; 
+  padding:5px 25px 0 25px;
+  border:1px solid #999; margin-left:7px; 
+  border-bottom:0; background:#eee; 
+  text-decoration:none;
+  text-align:center; color:#000;
+  -moz-border-radius-topleft:5px;
+  -moz-border-radius-topright:5px;
+  -webkit-border-top-left-radius:5px;
+  -webkit-border-top-right-radius:5px;  
+}
+div.asset-panel .actions a.upload {
+  background:orange url('/images/gradients.jpg') repeat-x 0px -250px;
+  border:1px solid orange;
+  border-bottom:0;
+  color:#fff;
+  font-weight:bold;
+  text-decoration:none;
+} 
+div.asset-panel .actions a.upload:hover {
+  background:#d1f0b9 url('/images/gradients.jpg') repeat-x 0px -205px; 
+  border:1px solid #bde99c;
+}
+div.asset-panel a:hover{
+  background:#333;
+  color:#fff;
+}
+div.content-window-wrapper {
+  background:#f1f2f3; 
+  border:1px solid #999; 
+  border-bottom:0;
+  -webkit-box-shadow:-5px -5px 15px #ccc;
+  }
+div.content-window {
+  height:300px; margin:0 auto; width:900px; 
+  background:#f1f2f3; overflow:hidden; padding:0;
+}
+.asset-content {
+  padding-top:10px;
+  display:none;
+}
+.drag-profile img:hover, .shop-each img:hover{
+  border:1px solid green !important;
+  -webkit-opacity:0.9 !important;
+  -moz-opacity:0.9 !important;
+  opacity:0.9 !important;
+}
+
+/* uploadify
+  ------------------------------------------------------------ */
+object#asset_dataUploader{
+
+}
+object#asset_dataUploader:hover{
+  border-right:4px solid green;
+  cursor:pointer;
+  cursor:cursor;
+}
+div.upload-info{
+  float:right;
+  width:220px;
+  padding:8px; 
+  border-left:1px solid #999;
+}
+#queue-wrapper{
+  margin-top:10px;
+  clear:both;
+  width:625px;
+  height:190px;
+  overflow:auto;
+  border-top:1px solid #999;
+}
+.uploadifyQueue,
+#queue-container {
+  background:#ff;
+  overflow:hidden;
+}
+.uploadifyQueueItem {
+  float:left;
+  width:100px;
+  height:75px;
+	font: 11px Verdana, Geneva, sans-serif;
+	border:1px solid #eee;
+	background-color: #fff;
+	margin: 3px;
+	padding:5px;
+	-webkit-box-shadow:2px 2px 2px #ccc;
+	-moz-box-shadow:2px 2px 2px #ccc;
+	box-shadow:2px 2px 2px #ccc;
+}
+#queue-container > div:first-child {
+  background:#ffff99;
+}
+.uploadifyQueueItem .fileSize{
+  float:left;
+}
+.uploadifyQueueItem .cancel {
+	float:right;
+}
+.uploadifyQueueItem input.fileName{
+  display:block;
+  clear:both;
+  margin:0 auto;
+  width:90px;
+  border:1px solid #eee;
+  position:relative;
+  top:5px;
+  overflow:hidden;
+  text-align:center;
+  font: 11px Verdana, Geneva, sans-serif;
+  color:#333;
+}
+.uploadifyQueueItem .percentage {
+  clear:both;
+  display:block;
+  text-align:center;
+}
+.uploadifyError {
+	border: 2px solid #FBCBBC !important;
+	background-color: #FDE5DD !important;
+}
+
+.uploadifyProgress {
+	background-color: #eee;
+	border: 1px solid #C5C5C5;
+	margin-top: 10px;
+	width: 100%;
+}
+.uploadifyProgressBar {
+	background-color: #0099FF;
+	width: 1px;
+	height: 15px;
+}
+
+table.upload-report{
+  margin-bottom:8px;
+}
+table.upload-report td,
+table.upload-report th {
+  padding:2px 7px;
+  border:3px solid #eee;
+  font-weight:bold;
+}
+table.upload-report th {background:#ccc;}
+table.upload-report td.good{background:lightgreen;}
+table.upload-report td.bad{background:lightpink;}
+
+/* selecting
+ --------------------------------- */
+ul.selectable {list-style: none; margin: 0; padding: 0;}
+ul.selectable .ui-selecting { background: #FECA40; }
+ul.selectable .ui-selected { background: #F39814; color: white; }
+.ui-state-highlight {
+  background:#CCFF99 !important;
+  border:1px solid #69D100 !important;
+  color:#111;
+}
+.super-trash.ui-state-highlight {
+  background:darkred !important;
+  color:#fff;
+}
+.drophover {
+  background:#4D9900 !important;
+  border:1px solid green !important;
+  color:#fff !important;
+}
+div.trashcan.drophover,
+.super-trash.drophover  {
+  background:#111 !important;
+  border:1px solid #000 !important;
+}
+
+.sortable-placeholder {
+  width:50px;
+  height:50px;
+  border:1px dashed #ccc;
+}
+
+
+/* ajax responses
+ ---------------------------------------- */
+.submitting{
+  padding:3px 3px 0 170px;
+  text-align:left;
+  color:#222;
+  background:#ffff99 url('/images/loading.gif') no-repeat 5% 50%;
+}
+.responding{
+  padding:3px 3px 0 3px;
+  text-align:center;
+}
+.loading{
+  width:200px;
+  margin:auto; margin-top:30px;
+  padding-top:20px;
+  text-align:center;
+  color:#222;
+  background:url('http://tastyink.com/images/loading.gif') no-repeat top center;
+}
+.loading.white{color:#fff}
+
+div.responding.active.good {
+  background:green;
+  color:#fff;
+}
+div.responding.active.bad {
+  background:red;
+  color:#fff;
+}
+div.responding.active.warn {
+  background:orange;
+  color:#fff;
+}
+
+
