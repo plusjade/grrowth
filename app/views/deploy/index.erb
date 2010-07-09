@@ -1,4 +1,4 @@
-
-<h2><%= @page.name %></h2>
+<% if !@page.css.nil? %>
+  <style type="text/css"><%= @page.css %></style>
+<% end %>
 <%= @page.body %>
-

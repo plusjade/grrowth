@@ -2,7 +2,7 @@ class Page < ActiveRecord::Base
   belongs_to :user
   
   validates_presence_of :name
-  after_update :renew_cache
+  after_save :renew_cache
   
 
   def renew_cache

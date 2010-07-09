@@ -4,23 +4,35 @@
     <button type="submit" class="positive">Save Changes</button>
   </fieldset>
 
-  <fieldset style="float:left">
-    <%= f.label :name %> <span class="star_req">*</span>
-    <br /><%= f.text_field :name, :rel => 'text_req' %>
-  </fieldset>
+  <ul id="page-tabs">
+    <li><a href="#tattoos" class="active" rel="tab-info">Info</a></li>
+    <li><a href="#artists" rel="tab-body">Body</a></li>
+    <li><a href="#shop" rel="tab-css">CSS</a></li>
+  </ul> 
+    
+  <div id="tab-info" class="tab-content">
+    <fieldset style="float:left">
+      <%= f.label :name %> <span class="star_req">*</span>
+      <br /><%= f.text_field :name, :rel => 'text_req' %>
+    </fieldset>
+    
+    <fieldset style="float:right">
+      <%= f.label 'Facebook Page or Profile ID' %> <span class="star_req">*</span>
+      <br /><%= f.text_field :fb_sig_page_id, :rel => 'text_req' %>
+    </fieldset> 
+  </div>    
   
-  <fieldset style="float:right">
-    <%= f.label 'Facebook Page or Profile ID' %> <span class="star_req">*</span>
-    <br /><%= f.text_field :fb_sig_page_id, :rel => 'text_req' %>
-  </fieldset> 
-        
-  <fieldset style="clear:both">
-    <%= f.label :body %><br />
-    <%= f.text_area :body, :style => 'width:99%;height:400px;' %>
-  </fieldset>
-  
+  <div id="tab-body" class="tab-content">
+    <fieldset style="clear:both">
+      <%= f.text_area :body, :style => 'width:99%;height:400px;' %>
+    </fieldset>
+  </div>
  
-
+  <div id="tab-css" class="tab-content">
+    <fieldset style="clear:both">
+      <%= f.text_area :css, :style => 'width:99%;height:400px;' %>
+    </fieldset>
+  </div>
 
         
 

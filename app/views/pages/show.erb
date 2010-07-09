@@ -1,6 +1,6 @@
-
-
 <h2><%= @page.name %></h2>
-<div>
-  <%= @page.body %>
-</div>
+
+<%= @page.body %>
+<% if !@page.css.nil? %>
+  <style type="text/css"><%= @page.css %></style>
+<% end %>

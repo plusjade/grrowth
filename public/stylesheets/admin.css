@@ -209,20 +209,19 @@ div.working-details {
 }
 
 
-/* main tab navigation 
+/* page tab navigation 
   ------------------------------------------------------------ */
-ul#main-tabs {
+ul#page-tabs {
   clear:both;
   list-style:none;
-  margin-top:50px;
   padding-bottom:10px;
-  padding-left:20px;
+  padding-left:10px;
 }
-ul#main-tabs li{ display:inline;}
-ul#main-tabs li a{
+ul#page-tabs li{ display:inline;}
+ul#page-tabs li a{
   position:relative;
   top:5px;
-  padding:10px 17px;
+  padding:5px 12px;
   margin-right:5px;
   -moz-border-radius-topleft:5px;
   -moz-border-radius-topright:5px;
@@ -236,9 +235,9 @@ ul#main-tabs li a{
   text-decoration: none;
   font-weight:bold;
 }
-ul#main-tabs li a:hover,
-ul#main-tabs li a.active{
-  padding:11px 17px;
+ul#page-tabs li a:hover,
+ul#page-tabs li a.active{
+  padding:6px 12px;
   background:#333;
   border:0;
   color:#fff; /* pink ff7676 */

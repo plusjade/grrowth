@@ -28,17 +28,14 @@
     </table> 
         
     <div id="header">
-    
-      <ul>
-        <li><%= link_to 'test', root_path, :rel => 'facebox' %></li>
-        <li><%= link_to 'New Page', new_page_path, :rel => 'facebox' %></li>
-      </ul>
+
     </div>  
     <div id="main">
     
       <div id="sidebar">
+        <h3>Pages</h3>
+        <%= link_to 'New Page', new_page_path, :rel => 'facebox' %>
         <ul>
-          <li><b>Pages</b></li>
         <% @user.pages.each do |page| %>
           <li><%= link_to page.name, page_path(page) %> <%= link_to '[edit]', edit_page_path(page) %></li>
         <% end %>

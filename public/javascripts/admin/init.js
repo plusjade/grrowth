@@ -9,11 +9,22 @@
     $.get(this.href, function(view){
       $('#content').html(view);
       $(document).trigger('ajaxify.forms');
+      $('ul#page-tabs li a:first').click();
     })
     return false;
   })
   
+  $('body').click($.delegate({
+   // activate tab navigation
+    'ul#page-tabs li a' : function(e){
+      $('div.tab-content').hide();
+      $('ul#page-tabs li a').removeClass('active');
+      $(e.target).addClass('active');
+      $('div#'+ $(e.target).attr('rel')).show();
+      return false;
+    } 
   
+  }));  
 
 /* bindings 
 ------------------------------- 
@@ -34,6 +45,7 @@
     });
   });
 
+  
   // facebox reveal callback  
   $(document).bind('reveal.facebox', function(){
     $wAssets  = $('#facebox div.working-assets');
