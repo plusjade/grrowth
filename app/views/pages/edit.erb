@@ -50,11 +50,12 @@
   }
 </style>
 <script type="text/javascript">
+
   var editor = CodeMirror.fromTextArea('page_body', {
     width: "820px",
-    height: "500px",
-    parserfile: "parsexml.js",
-    stylesheet: "/stylesheets/codemirror/xmlcolors.css?12312",
+    height: "700px",
+    parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "parsehtmlmixed.js"],
+    stylesheet: ["/stylesheets/codemirror/xmlcolors.css?232331sdf", "/stylesheets/codemirror/jscolors.css?12312"],
     path: "/javascripts/codemirror/",
     continuousScanning: 500,
     lineNumbers: true,
@@ -63,7 +64,7 @@
 
   var cssEditor = CodeMirror.fromTextArea('page_css', {
     width: "820px",
-    height: "500px",
+    height: "700px",
     parserfile: "parsecss.js",
     stylesheet: "/stylesheets/codemirror/csscolors.css?3453",
     path: "/javascripts/codemirror/",

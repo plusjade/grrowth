@@ -38,7 +38,12 @@
         <%= link_to 'New Page', new_page_path, :rel => 'facebox' %>
         <ul>
         <% @user.pages.each do |page| %>
-          <li><%= link_to page.name, page_path(page) %> <%= link_to '[edit]', edit_page_path(page) %></li>
+          <li>
+            <%= link_to page.name, page_path(page),  :rel => 'facebox' %>
+            <%= link_to 'Testit!', 'http://apps.facebook.com/aplanofattack/deploy/index/' + page.fb_sig_page_id, :target => '_blank' %>
+            <%= link_to '[edit]', edit_page_path(page), :class => 'edit' %>
+          
+          </li>
         <% end %>
         </ul>
       </div>

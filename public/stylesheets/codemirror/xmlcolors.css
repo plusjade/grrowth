@@ -1,6 +1,6 @@
 html {
   cursor: text;
-  background:#000;
+  background:#ccc;
 }
 
 .editbox {
@@ -8,7 +8,7 @@ html {
   padding: 0;
   font-family: monospace;
   font-size: 10pt;
-  color: #fff;
+  color: #333;
 }
 
 .editbox p {
@@ -52,5 +52,5 @@ span.xml-error {
 }
 
 span.xml-text {
-  color: #fff;
+  color: #333;
 }

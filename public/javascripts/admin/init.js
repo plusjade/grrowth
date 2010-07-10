@@ -4,7 +4,7 @@
 
     
   $('a[rel*=facebox]').facebox();
-  $('#sidebar ul li a').click(function(){
+  $('#sidebar ul li a.edit').click(function(){
     $('#content').html(loading);
     $.get(this.href, function(view){
       $('#content').html(view);

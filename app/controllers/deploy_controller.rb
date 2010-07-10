@@ -4,9 +4,10 @@ class DeployController < ApplicationController
   
    
   def index
-    render :text => 'Facebook credentials not sent.' and return if params['fb_sig_page_id'].nil?
+    render :text => 'Facebook credentials not sent.' and return if (params['fb_sig_page_id'].nil? and params[:id].nil?)
+    
     #@id = '131864086829765'
-    @id = params['fb_sig_page_id']
+    @id = (params[:id]) ? params[:id] : params['fb_sig_page_id']
     
     
     @path = File.join('tmp/cache', "#{@id}.html")
