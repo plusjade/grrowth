@@ -1,26 +1,26 @@
 <% form_for @page do |f| %>
   <%= f.error_messages %>
-  <fieldset class="buttons">
+  
+  <fieldset class="buttons" style="float:left">
     <button type="submit" class="positive">Save Changes</button>
   </fieldset>
 
-  <ul id="page-tabs">
-    <li><a href="#tattoos" class="active" rel="tab-info">Info</a></li>
-    <li><a href="#artists" rel="tab-body">Body</a></li>
-    <li><a href="#shop" rel="tab-css">CSS</a></li>
-  </ul> 
-    
-  <div id="tab-info" class="tab-content">
+  <div style="overflow:hidden;float:right;">
     <fieldset style="float:left">
       <%= f.label :name %> <span class="star_req">*</span>
-      <br /><%= f.text_field :name, :rel => 'text_req' %>
+      <%= f.text_field :name, :rel => 'text_req' %>
     </fieldset>
     
     <fieldset style="float:right">
       <%= f.label 'Facebook Page or Profile ID' %> <span class="star_req">*</span>
-      <br /><%= f.text_field :fb_sig_page_id, :rel => 'text_req' %>
+      <%= f.text_field :fb_sig_page_id, :rel => 'text_req' %>
     </fieldset> 
-  </div>    
+  </div>  
+  
+  <ul id="page-tabs">
+    <li><a href="#artists" rel="tab-body">Body</a></li>
+    <li><a href="#shop" rel="tab-css">CSS</a></li>
+  </ul> 
   
   <div id="tab-body" class="tab-content">
     <fieldset style="clear:both">
@@ -37,4 +37,38 @@
         
 
 <% end %>
+<style type="text/css">
+  .CodeMirror-line-numbers {
+    width: 2.2em;
+    color: #aaa;
+    background-color: #eee;
+    text-align: right;
+    padding-right: .3em;
+    font-size: 10pt;
+    font-family: monospace;
+    padding-top: .4em;
+  }
+</style>
+<script type="text/javascript">
+  var editor = CodeMirror.fromTextArea('page_body', {
+    width: "820px",
+    height: "500px",
+    parserfile: "parsexml.js",
+    stylesheet: "/stylesheets/codemirror/xmlcolors.css?12312",
+    path: "/javascripts/codemirror/",
+    continuousScanning: 500,
+    lineNumbers: true,
+    textWrapping: false
+  });
+
+  var cssEditor = CodeMirror.fromTextArea('page_css', {
+    width: "820px",
+    height: "500px",
+    parserfile: "parsecss.js",
+    stylesheet: "/stylesheets/codemirror/csscolors.css?3453",
+    path: "/javascripts/codemirror/",
+    continuousScanning: 500,
+    lineNumbers: true
+  });
+</script>
 
