@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100706104809) do
+ActiveRecord::Schema.define(:version => 20100710104147) do
 
   create_table "pages", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(:version => 20100706104809) do
   end
 
   add_index "pages", ["fb_sig_page_id"], :name => "fb_sig_page_id"
+
+  create_table "sliders", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "name"
+    t.integer  "slide_count"
+    t.integer  "height"
+    t.integer  "width"
+    t.text     "slides"
+    t.text     "css"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                              :null => false

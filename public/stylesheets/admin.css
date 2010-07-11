@@ -214,8 +214,10 @@ div.working-details {
 ul#page-tabs {
   clear:both;
   list-style:none;
-  padding-bottom:10px;
+  padding-bottom:5px;
   padding-left:10px;
+  margin-bottom:10px;
+  border-bottom:1px solid #333;
 }
 ul#page-tabs li{ display:inline;}
 ul#page-tabs li a{

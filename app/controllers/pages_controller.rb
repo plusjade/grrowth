@@ -3,14 +3,7 @@ class PagesController < ApplicationController
   before_filter :require_user
     
   def index
-    @user = current_user
-    @pages = @user.pages
-    respond_to do |format|
-      format.html { }
-      format.json do
-        render :json => @pages
-      end
-    end
+    render :text => 'nothing'
   end
 
 

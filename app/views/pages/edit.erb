@@ -1,3 +1,5 @@
+<%= link_to 'Test in Facebook', 'http://apps.facebook.com/aplanofattack/deploy/index/' + @page.fb_sig_page_id, :target => '_blank' %>
+
 <% form_for @page do |f| %>
   <%= f.error_messages %>
   
@@ -12,16 +14,22 @@
     </fieldset>
     
     <fieldset style="float:right">
-      <%= f.label 'Facebook Page or Profile ID' %> <span class="star_req">*</span>
+      <%= f.label 'Facebook Page/Profile ID' %> <span class="star_req">*</span>
       <%= f.text_field :fb_sig_page_id, :rel => 'text_req' %>
     </fieldset> 
   </div>  
   
   <ul id="page-tabs">
-    <li><a href="#artists" rel="tab-body">Body</a></li>
-    <li><a href="#shop" rel="tab-css">CSS</a></li>
+    <li><a href="deploy/index/<%= page.fb_sig_page_id %>" rel="tab-view" id="load">Quick View</a></li>
+    <li><a href="#body" rel="tab-body">Body</a></li>
+    <li><a href="#css" rel="tab-css">CSS</a></li>
+    <li><a href="#widget" rel="tab-widget">Widgets</a></li>
   </ul> 
-  
+
+  <div id="tab-view" class="tab-content">
+    This is the view
+  </div>
+    
   <div id="tab-body" class="tab-content">
     <fieldset style="clear:both">
       <%= f.text_area :body, :style => 'width:99%;height:400px;' %>
@@ -34,8 +42,19 @@
     </fieldset>
   </div>
 
-        
-
+  <div id="tab-widget" class="tab-content">
+    <h3>Sliders</h3>
+    <ul>
+    <% @page.sliders.each do |slider| %>
+      <li>
+        <%= link_to slider.name, edit_slider_path(slider) %>
+      </li>
+    <% end %>
+    </ul>
+    
+    <div id="widget-wrapper"></div>
+  </div>
+  
 <% end %>
 <style type="text/css">
   .CodeMirror-line-numbers {

@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Admin | Facebook app creator </title>
   <%= stylesheet_link_tag "global", 'admin' %>
-  <%= javascript_include_tag "jquery-1.4.2.min", 'admin/addon', 'facebox/facebox' %>
+  <%= javascript_include_tag "jquery-1.4.2.min", 'admin/addon', 'admin/jquery-ui.min', 'facebox/facebox' %>
   <%= javascript_include_tag "codemirror/codemirror" %>
   <%= javascript_include_tag "admin/init" %>
   
@@ -18,7 +18,15 @@
           <ul class="admin-links">
             <li><%= link_to 'Account', account_path %></li>
             <li><%= link_to 'Logout', '/user_sessions/destroy' %></li>
+            <%= link_to 'New Page', new_page_path, :rel => 'facebox' %>
           </ul>        
+        </td>
+        <td style="width:250px">
+          <ul id="pages-list">
+          <% @user.pages.each do |page| %>
+            <li><%= link_to page.name, edit_page_path(page), :class => 'edit' %></li>
+          <% end %>
+          </ul>
         </td>
         <td class="status">
           <div class="submitting" style="display:none">Submitting..</div>
@@ -32,26 +40,9 @@
 
     </div>  
     <div id="main">
-    
-      <div id="sidebar">
-        <h3>Pages</h3>
-        <%= link_to 'New Page', new_page_path, :rel => 'facebox' %>
-        <ul>
-        <% @user.pages.each do |page| %>
-          <li>
-            <%= link_to page.name, page_path(page),  :rel => 'facebox' %>
-            <%= link_to 'Testit!', 'http://apps.facebook.com/aplanofattack/deploy/index/' + page.fb_sig_page_id, :target => '_blank' %>
-            <%= link_to '[edit]', edit_page_path(page), :class => 'edit' %>
-          
-          </li>
-        <% end %>
-        </ul>
-      </div>
-      
       <div id="content">
        <%= yield %>
       </div>
-      
     </div>
     
   </div>
