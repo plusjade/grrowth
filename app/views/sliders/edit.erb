@@ -1,119 +1,67 @@
 
-<style type="text/css">
-fieldset.info input {width:200px;}
-
-ul#slides-list {
-  margin:auto;
-  list-style:none;
-  padding:0;
-  width:700px; 
-}
-ul#slides-list li {
-  display:block;
-  margin-bottom:5px;
-}
-ul#slides-list li div.info {
-  width:700px;
-  overflow:hidden;
-  border:1px dashed #ccc;
-  background:#ffffcc;
-  padding:4px;
-}
-ul#slides-list li div.info a {
-  display:block;
-  width:60px;
-  float:right;
-  background:#fff;
-  text-align:right;
-}
-ul#slides-list li span {
-  display:block;
-  float:left;
-  width:100px;
-}
-ul#slides-list li div.edit { display:none;}
-ul#slides-list div textarea {
-  width:580px;
-  height:300px;
-  margin:auto;
-}
-</style>
-
-<script type="text/javascript">
-$(function(){
-  function addNew(index){ return '<li><div class="info"><span>Slide '+ index +' </span><a href="#" class="edit">edit</a><a href="#" class="delete">[x]</a></div><div class="edit"><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']">slide number: '+ index +'</textarea></div></li>';};
-      
-  $("ul#slides-list").sortable({ handle: 'span', axis: 'y' });
- 
- // overload save button to change textarea insertion order.
-  $('button#save-slider').click(function(){
-    $.each($('ul#slides-list li'), function(key, node){
-      $('textarea', $(this)).attr('name', 'slider_slides['+ key +']');
-    })
-  });
-  
-    
-  $('a#new-slide').click(function(){
-    var index = $('ul#slides-list li').length;
-    $('ul#slides-list').append(addNew(index));
-    console.log('new slide: ' + index);
-    return false;
-  });
-  
-  $('ul#slides-list').click($.delegate({
-     'a.edit' :function(e){
-        $(e.target).parent().next('div').toggle();
-        return false;
-     },  
-     'a.delete' :function(e){
-        $(e.target).parent().parent('li').remove();
-        return false;
-     }
-   }));
- 
-})
-</script>
 <% form_for @slider do |f| %>
   <%= f.error_messages %>
   
-  <fieldset class="buttons" style="float:left">
-    <button type="submit" class="positive" id="save-slider">Save Changes</button>
-  </fieldset>
+  <table class="page-head">
+    <tr>
+      <td style="width:250px;">
+        <%= f.label :name %> <span class="star_req">*</span>
+        <%= f.text_field :name,  {:style => 'width:150px', :rel => 'text_req' } %>
+      </td>
+      <td style="width:150px;">
+        <%= f.label :width %> <span class="star_req">*</span>
+        <%= f.text_field :width, {:style => 'width:50px', :rel => 'text_req' } %>px
+      </td>
+      
+      <td style="width:150px;">
+        <%= f.label :height %> <span class="star_req">*</span>
+        <%= f.text_field :height,  {:style => 'width:50px', :rel => 'text_req' } %>px
+      </td>
+         
+      <td class="buttons" style="width:120px;">
+        <button type="submit" class="positive" id="save-slider">Save Changes</button>
+      </td>
+    </tr>
+  </table>
 
-  <fieldset class="info" style="clear:both; overflow:hidden;">
-      <%= f.label :name %> <span class="star_req">*</span>
-      <%= f.text_field :name, :rel => 'text_req' %>
-    
-      <%= f.label :width %> <span class="star_req">*</span>
-      <%= f.text_field :width, :rel => 'text_req' %>
+  <ul id="widget-tabs">
+    <li><a href="<%=slider_path(@slider)%>" rel="tab-widget-view" id="loadachu">Quick View</a></li>
+    <li><a href="#slides" rel="tab-widget-slides">Slides</a></li>
+    <li><a href="#css" rel="tab-widget-css">CSS</a></li>
+  </ul> 
+
+  <div id="tab-widget-view" class="widget-tabs">
+    This is the view
+  </div>
         
-      <%= f.label :height %> <span class="star_req">*</span>
-      <%= f.text_field :height, :rel => 'text_req' %>
-  </fieldset>  
-
-  <a href="#" id="new-slide" style="clear:both;">New Slide</a>
-  
-  <ul id="slides-list">
-    <% @slider.slides.each_with_index do |content, index| %>
-      <li>
-        <div class="info">
-          <span>Slide #<%= index %></span>
-          <a href="#" class="edit">edit</a>
-          <a href="#" class="delete">[x]</a>
-        </div>
-        <div class="edit">
-          <textarea id="slider_slides_<%= index %>" name="slider_slides[<%= index %>]"><%= content %></textarea>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-  
- 
-  <div id="tab-slides-css">
-    <fieldset style="clear:both; display:none;">
+  <div id="tab-widget-slides" class="widget-tabs">
+    <a href="#" id="new-slide" style="clear:both;">New Slide</a>
+    <ul id="slides-list">
+      <% @slider.slides.each_with_index do |content, index| %>
+        <li>
+          <div class="info">
+            <span>Slide #<%= index %></span>
+            <a href="#" class="delete">[x]</a>
+            <a href="#" class="edit">edit</a>
+          </div>
+          <div class="edit">
+            <textarea id="slider_slides_<%= index %>" name="slider_slides[<%= index %>]"><%= content %></textarea>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+    
+  <div id="tab-widget-css" class="widget-tabs">
+    <fieldset>
       <%= f.text_area :css, :style => 'width:99%;height:300px;' %>
     </fieldset>
   </div>
   
 <% end %> 
   
+<script type="text/javascript">
+$(function(){
+  $("ul#slides-list").sortable({axis: 'y' });
+})
+</script>

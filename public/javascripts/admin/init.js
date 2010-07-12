@@ -1,19 +1,26 @@
 ;$(document).ready(function(){
   var loading = '<div class="loading">Loading...</div>';
-
-
-    
-  //$('a[rel*=facebox]').facebox();
-  $('ul#pages-list li a.edit').click(function(){
-    $('#content').html(loading);
-    $.get(this.href, function(view){
-      $('#content').html(view);
+  function addNew(index){ return '<li><div class="info"><span>Slide '+ index +' </span><a href="#" class="delete">[x]</a><a href="#" class="edit">edit</a></div><div class="edit"><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']">slide number: '+ index +'</textarea></div></li>';};
+  
+  function loadInto(url, div, callback){
+    $(div).html(loading);
+    $.get(url, function(view){
+      $(div).html(view);
       $(document).trigger('ajaxify.forms');
+      if(callback && (typeof callback == 'function')) callback();
+    })    
+  }
+  
+  $('ul#pages-list li a.edit').click(function(){
+    loadInto(this.href, '#holder', function(){
       $('ul#page-tabs li a:first').click();
     })
     return false;
   })
   
+/* delegations
+------------------------------- 
+------------------------------- */    
   $('body').click($.delegate({
    'a[rel*=facebox]' :function(e){
       $.facebox(function(){ 
@@ -21,9 +28,7 @@
       })
       return false;
    },
-   
-   
-   // activate tab navigation
+   // activate tab navigation for page editing panel
     'ul#page-tabs li a' : function(e){
       $('div.tab-content').hide();
       $('ul#page-tabs li a').removeClass('active');
@@ -36,23 +41,56 @@
           $tab.html(view);
         })      
       }
-      
+      // this is so javascript in the preview gets removed.
+      $('div#tab-view').empty();
       return false;
     },
     
-     
-   // activate tab navigation
-    'div#tab-widget ul li a' : function(e){
-      $('div#widget-wrapper').html(loading);
-      $.get(e.target.href, function(view){
-        $('div#widget-wrapper').html(view);
-        $(document).trigger('ajaxify.forms');
+   // activate tab navigation for widget editing panel
+    'ul#widget-tabs li a' : function(e){
+      $('div.widget-tabs').hide();
+      $('ul#widget-tabs li a').removeClass('active');
+      $(e.target).addClass('active');
+      var $tab = $('div#'+ $(e.target).attr('rel'));
+      $tab.show();
+      if(e.target.id == 'loadachu'){
+        $tab.html(loading);
+        $.get(e.target.href, function(view){
+          $tab.html(view);
+        })      
+      }
+      return false;
+    },
+    
+   // load widgets editable environment
+    'ul.widget-list li a' : function(e){
+      loadInto(e.target.href, 'div#widget-wrapper', function(){
+         $('ul#widget-tabs li a:first').click();
       });
-            
       return false;
     },  
-  
-  
+/*
+  edit sliders environment
+*/ 
+   // overload save button to change textarea insertion order.
+    'button#save-slider' : function(e){
+      $.each($('ul#slides-list li'), function(key, node){
+        $('textarea', $(this)).attr('name', 'slider_slides['+ key +']');
+      })
+    },
+    'a#new-slide' : function(e){
+      var index = $('ul#slides-list li').length;
+      $('ul#slides-list').append(addNew(index));
+      return false;
+    },
+    'ul#slides-list a.edit' :function(e){
+      $(e.target).parent().next('div').toggle();
+      return false;
+    },  
+    'ul#slides-list a.delete' :function(e){
+      $(e.target).parent().parent('li').remove();
+      return false;
+    }   
   }));  
 
 /* bindings 

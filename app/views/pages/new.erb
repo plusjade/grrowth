@@ -4,14 +4,11 @@
   <%= f.error_messages %>
   
   <div class="right-half">
-    <fieldset>
-      <%= f.label :body %><br />
-      <%= f.text_area :body %>
-    </fieldset>
+    Info
   </div>
   
   <div class="left-half">
-    <h5>New Page Info</h5>
+    <h5>Create a New Page</h5>
     <fieldset>
       <%= f.label :name %> <span class="star_req">*</span>
       <br /><%= f.text_field :name, :rel => 'text_req' %>

@@ -120,107 +120,18 @@ ul.admin-links li {
 ul.admin-links li a {
 }
 
-/* the workspace 
-  ------------------------------------------------------------ */
-#the-workspace{
-  display:none;
-}
-.workspace-wrapper {
-  clear:both;
-  width:800px;
-  margin-bottom:20px;
-  min-height:90px;
-  overflow:hidden;
-}
-  ul.workspace-toolbar {
-    width:700px;
-    float:left;
-    list-style:none;
-    overflow:hidden;
-  }
-  ul.workspace-toolbar li {
-    float:left;
-  }
-  ul.workspace-toolbar li a{
-    padding:1px 6px;
-    display:block;  
-    margin-right:8px;
-    font-size:12px;
-    color:#fff;
-    background:#d1f0b9 url('/images/gradients.jpg') repeat-x 0px -205px;
-    text-decoration:none;
-    text-align:center;
-  }
-.workspace-wrapper ul.workspace-toolbar li a.disable {
-  color:#ccc;
-  background:#eee; 
-}
-.workspace-wrapper ul.workspace-toolbar li a:hover{
-  background:#111; 
-  color:#fff;
-}
-
-.workspace-wrapper .working-profile {
-  display:none;
-  background:#ffffcc;
-  border:2px solid #ffff99;
-  text-align:center;
-  color:#555;
-}
-.workspace-wrapper .working-profile img {
-  width:25px;
-  height:25px;
-  display:block;
-  margin:auto;
-  border:1px solid green;
-}
-
-div.working-assets {
-  min-height:65px;
-  padding:5px;
-  border:1px solid #999;
-  background:#eee;
-  list-style:none;
-}
-div.working-assets img {
-  display:block;
-  height:50px;
-  width:50px;
-  float:left;
-  margin:2px;
-  border:1px solid #333;
-}
-div.working-assets img.is-new {
-  -webkit-opacity:0.5;
-  -moz-opacity:0.5;
-  opacity:0.5;
-  border:1px solid #eee;
-}
-.upload-note {
-  width:600px;
-  margin:0 auto;
-  padding:1px 3px; 
-  background:#ffffcc;
-  text-align:center;
-}
-div.working-details {
-  clear:both;
-  padding:10px;
-}
-
 
 /* page tab navigation 
   ------------------------------------------------------------ */
-ul#page-tabs {
+ul#page-tabs, ul#widget-tabs {
   clear:both;
   list-style:none;
   padding-bottom:5px;
   padding-left:10px;
-  margin-bottom:10px;
-  border-bottom:1px solid #333;
 }
-ul#page-tabs li{ display:inline;}
-ul#page-tabs li a{
+ul#page-tabs li, ul#widget-tabs li { display:inline;}
+ul#page-tabs li a,
+ul#widget-tabs li a{
   position:relative;
   top:5px;
   padding:5px 12px;
@@ -238,7 +149,9 @@ ul#page-tabs li a{
   font-weight:bold;
 }
 ul#page-tabs li a:hover,
-ul#page-tabs li a.active{
+ul#page-tabs li a.active,
+ul#widget-tabs li a:hover,
+ul#widget-tabs li a.active{
   padding:6px 12px;
   background:#333;
   border:0;
@@ -250,103 +163,14 @@ ul#page-tabs li a.active{
   box-shadow: 1px -1px 4px #eee;
 }
 
-.tab-content {
+.tab-content, .widget-tabs {
   min-height:200px;
 }
 
-
-/* assets resources tab
-  ------------------------------------------------------------ */
-ul.asset-actions{
-  clear:both;
-  list-style:none;
-  padding-bottom:3px;
-}	
-ul.asset-actions li {
-  display:inline;
-  margin-right:10px;
+ul#widget-tabs {
+  margin-bottom:10px;
+  border-bottom:1px solid #555;
 }
-ul#assets-wrapper { height:225px; overflow:auto; }
-ul#assets-wrapper li {
-  margin: 3px; float: left; 
-  width:50px; height:50px;
-  text-align: center;
-}
-ul#assets-wrapper img {
-  width:50px; height:50px;
-  background:#fff;
-  border:1px solid #555;
-  cursor:move;
-}  
-
-
-/* tattoos resource tab
-  ------------------------------------------------------------ */
-ul#tattoos-wrapper {
-  list-style:none;
-}	
-ul#tattoos-wrapper li {
-  float:left;
-  text-align:center;
-  display:inline;
-  margin:2px;
-  padding:5px;
-  height:100px;
-  overflow:hidden;
-  width:85px;
-  background:#eee;
-  border:1px solid #ccc;
-}
-ul#tattoos-wrapper li img {
-  display:block;
-  width:75px;
-  height:75px;
-  margin:0 auto 2px auto;
-  border:1px solid #333;
-  cursor:move;
-}
-
-/* artist and shop resources tab
-  ------------------------------------------------------------ */
-.artist-each, .shop-each {
-  width:150px;
-  float:left;
-  margin:10px;
-  padding:10px 0;
-  border:1px solid #ccc;
-  background:#eee;
-  text-align:center;
-}
-.artist-each img, .shop-each img {
-  width:75px;
-  height:75px;
-  display:block;
-  margin:auto;
-  border:1px solid #ccc;
-  cursor:move;
-}
-
-/* artist list */
-ul#artists-list {
-  margin-bottom:15px;
-}
-ul#artists-list li {
-  display:inline;
-  margin-right:10px;
-}
-ul#artists-list li a {
-  padding:4px 8px;
-  background:#ccc;
-  text-decoration:none;
-  color:#333;
-}
-ul#artists-list li a:hover,
-ul#artists-list li a.active {
-  background:#111;
-  color:#fff;
-}
-
-
 /* form elements
   ------------------------------------------------------------ */
 form input {padding:3px; border:1px solid #555; }
@@ -405,65 +229,6 @@ fieldset span.star_req{color:red;}
 fieldset.field_error {padding:10px !important; background: #fad6d6 !important; -moz-border-radius:7px;-webkit-border-radius:7px;}
 fieldset span.error_msg { display: block; color: red; }
 
-
-/* bottom asset panel
-  ------------------------------------------------------------ */
-div.asset-panel {
-  position:fixed; top:0; width:100%; background:transparent; 
-  z-index:99999; font-size: 12px !important; font-family:verdana, arial, "sans serif" !important;
-  color:#333 !important; text-align:left !important;
-}
-div.asset-panel .actions{
-  position:relative; overflow:hidden; top:2px;
-}
-div.asset-panel .actions a {
-  display:block; height:28px;  float:right; 
-  padding:5px 25px 0 25px;
-  border:1px solid #999; margin-left:7px; 
-  border-bottom:0; background:#eee; 
-  text-decoration:none;
-  text-align:center; color:#000;
-  -moz-border-radius-topleft:5px;
-  -moz-border-radius-topright:5px;
-  -webkit-border-top-left-radius:5px;
-  -webkit-border-top-right-radius:5px;  
-}
-div.asset-panel .actions a.upload {
-  background:orange url('/images/gradients.jpg') repeat-x 0px -250px;
-  border:1px solid orange;
-  border-bottom:0;
-  color:#fff;
-  font-weight:bold;
-  text-decoration:none;
-} 
-div.asset-panel .actions a.upload:hover {
-  background:#d1f0b9 url('/images/gradients.jpg') repeat-x 0px -205px; 
-  border:1px solid #bde99c;
-}
-div.asset-panel a:hover{
-  background:#333;
-  color:#fff;
-}
-div.content-window-wrapper {
-  background:#f1f2f3; 
-  border:1px solid #999; 
-  border-bottom:0;
-  -webkit-box-shadow:-5px -5px 15px #ccc;
-  }
-div.content-window {
-  height:300px; margin:0 auto; width:900px; 
-  background:#f1f2f3; overflow:hidden; padding:0;
-}
-.asset-content {
-  padding-top:10px;
-  display:none;
-}
-.drag-profile img:hover, .shop-each img:hover{
-  border:1px solid green !important;
-  -webkit-opacity:0.9 !important;
-  -moz-opacity:0.9 !important;
-  opacity:0.9 !important;
-}
 
 /* uploadify
   ------------------------------------------------------------ */
@@ -564,37 +329,6 @@ table.upload-report th {background:#ccc;}
 table.upload-report td.good{background:lightgreen;}
 table.upload-report td.bad{background:lightpink;}
 
-/* selecting
- --------------------------------- */
-ul.selectable {list-style: none; margin: 0; padding: 0;}
-ul.selectable .ui-selecting { background: #FECA40; }
-ul.selectable .ui-selected { background: #F39814; color: white; }
-.ui-state-highlight {
-  background:#CCFF99 !important;
-  border:1px solid #69D100 !important;
-  color:#111;
-}
-.super-trash.ui-state-highlight {
-  background:darkred !important;
-  color:#fff;
-}
-.drophover {
-  background:#4D9900 !important;
-  border:1px solid green !important;
-  color:#fff !important;
-}
-div.trashcan.drophover,
-.super-trash.drophover  {
-  background:#111 !important;
-  border:1px solid #000 !important;
-}
-
-.sortable-placeholder {
-  width:50px;
-  height:50px;
-  border:1px dashed #ccc;
-}
-
 
 /* ajax responses
  ---------------------------------------- */
@@ -631,4 +365,48 @@ div.responding.active.warn {
   color:#fff;
 }
 
+/* edit slider environment
+   ---------------------------------------------------- */   
+fieldset.info input {width:200px;}
 
+ul#slides-list {
+  margin:auto;
+  list-style:none;
+  padding:0;
+  width:700px; 
+}
+ul#slides-list li {
+  display:block;
+  margin-bottom:5px;
+}
+ul#slides-list li div.info {
+  width:700px;
+  overflow:hidden;
+  border:1px dashed #ccc;
+  background:#ffffcc;
+  padding:4px;
+}
+ul#slides-list li div.info a {
+  display:block;
+  width:60px;
+  float:right;
+  background:#fff;
+  text-align:right;
+}
+ul#slides-list li span {
+  display:block;
+  float:left;
+  width:100px;
+}
+ul#slides-list li div.edit { display:none;}
+ul#slides-list div textarea {
+  width:580px;
+  height:300px;
+  margin:auto;
+}  
+
+
+table.page-head {width:100%; margin-bottom:15px;}
+table.page-head td {vertical-align:top; text-align:center;}
+table.page-head label {font-weight:bold;}
+   

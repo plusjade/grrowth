@@ -1,61 +1,71 @@
-<%= link_to 'Test in Facebook', 'http://apps.facebook.com/aplanofattack/deploy/index/' + @page.fb_sig_page_id, :target => '_blank' %>
 
 <% form_for @page do |f| %>
   <%= f.error_messages %>
-  
-  <fieldset class="buttons" style="float:left">
-    <button type="submit" class="positive">Save Changes</button>
-  </fieldset>
 
-  <div style="overflow:hidden;float:right;">
-    <fieldset style="float:left">
-      <%= f.label :name %> <span class="star_req">*</span>
-      <%= f.text_field :name, :rel => 'text_req' %>
-    </fieldset>
-    
-    <fieldset style="float:right">
-      <%= f.label 'Facebook Page/Profile ID' %> <span class="star_req">*</span>
-      <%= f.text_field :fb_sig_page_id, :rel => 'text_req' %>
-    </fieldset> 
-  </div>  
-  
+    <table class="page-head">
+      <tr>
+        <td style="width:250px;">
+          <%= f.label "Page Name" %> <span class="star_req">*</span>
+          <%= f.text_field :name, {:rel => 'text_req', :style => 'width:150px' } %>
+        </td>
+        <td style="width:360px;">
+          <%= f.label 'Facebook Page/Profile ID' %> <span class="star_req">*</span>
+          <%= f.text_field :fb_sig_page_id, {:rel => 'text_req', :style => 'width:150px' } %>
+        </td>
+        <td class="buttons" style="width:140px;">
+          <%= link_to 'Facebook Preview', 'http://apps.facebook.com/aplanofattack/deploy/index/' + @page.fb_sig_page_id, {:target => '_blank', :class => 'positive', :style => 'float:right;position:relative;top:3px'} %>
+        </td>
+        <td class="buttons" style="width:120px;">
+          <button type="submit" class="positive" style="float:right">Save Changes</button>
+        </td>
+      </tr>
+    </table>
+      
   <ul id="page-tabs">
-    <li><a href="deploy/index/<%= page.fb_sig_page_id %>" rel="tab-view" id="load">Quick View</a></li>
+    <li><a href="deploy/preview/<%= page.fb_sig_page_id %>" rel="tab-view" id="load">Quick View</a></li>
     <li><a href="#body" rel="tab-body">Body</a></li>
     <li><a href="#css" rel="tab-css">CSS</a></li>
     <li><a href="#widget" rel="tab-widget">Widgets</a></li>
-  </ul> 
+  </ul>
+  <div id="main">
+    <div id="content">
 
-  <div id="tab-view" class="tab-content">
-    This is the view
-  </div>
-    
-  <div id="tab-body" class="tab-content">
-    <fieldset style="clear:both">
-      <%= f.text_area :body, :style => 'width:99%;height:400px;' %>
-    </fieldset>
-  </div>
- 
-  <div id="tab-css" class="tab-content">
-    <fieldset style="clear:both">
-      <%= f.text_area :css, :style => 'width:99%;height:400px;' %>
-    </fieldset>
-  </div>
+      <div id="tab-view" class="tab-content">
+        This is the view
+      </div>
+        
+      <div id="tab-body" class="tab-content">
+        <fieldset style="clear:both">
+          <%= f.text_area :body, :style => 'width:99%;height:400px;' %>
+        </fieldset>
+      </div>
+     
+      <div id="tab-css" class="tab-content">
+        <fieldset style="clear:both">
+          <%= f.text_area :css, :style => 'width:99%;height:400px;' %>
+        </fieldset>
+      </div>
 
-  <div id="tab-widget" class="tab-content">
-    <h3>Sliders</h3>
-    <ul>
-    <% @page.sliders.each do |slider| %>
-      <li>
-        <%= link_to slider.name, edit_slider_path(slider) %>
-      </li>
-    <% end %>
-    </ul>
-    
-    <div id="widget-wrapper"></div>
+      <div id="tab-widget" class="tab-content">
+        <div style="padding:5px;background:#ffffcc;margin-bottom:10px;">
+          <h3>Slideshows</h3>
+          <ul class="widget-list">
+          <% @page.sliders.each do |slider| %>
+            <li>
+              <%= link_to slider.name, edit_slider_path(slider) %> => <b>[#slider:<%=slider.id%>]</b>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+        <div id="widget-wrapper"></div>
+      </div>
+      
+      
+    </div>
   </div>
-  
 <% end %>
+
+
 <style type="text/css">
   .CodeMirror-line-numbers {
     width: 2.2em;

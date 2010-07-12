@@ -1,0 +1,79 @@
+
+<style type="text/css" id="slide-widget">
+#gallery-wrapper, #gallery, #gallery div.each-slide {width:<%= @slider.width %>px; height:<%= @slider.height %>px !important;}
+#gallery-wrapper{overflow:hidden !important;}
+#gallery{position: relative; left: 0px; overflow:hidden !important;}
+#gallery div.each-slide {float:left !important; }
+<%= @slider.css.gsub("\n", '') %>
+</style>
+<div id="gallery-wrapper">
+  <div id="gallery" onclick="return false;" title="1">
+    <% @slider.slides.each_with_index do |content, index| %>
+      <div id="slide-<%= index+1 %>" class="each-slide"><span><%= content %></span></div>
+    <% end %>
+  </div>
+</div>
+
+<div id="buttons">
+  <a href="#" id="back" onclick="apoa.scroll('back'); return false;">&lt;</a> 
+  <a href="#" id="next" onclick="apoa.scroll('next'); return false;">&gt;</a> 
+</div>
+<div style="margin:auto; text-align:center;">
+  <a href="#" onclick="apoa.reset(); return false;">Reset</a>
+</div>
+
+<% if @preview %>
+ <script type="text/javascript">
+  /* preview mode using jquery */ 
+  function slideshow($Gallery, slideCount, slideWidth){
+    this.scroll = function(action){
+      var curSlide = $Gallery.attr('title');
+      if (curSlide <= 1 && action == 'back'){return false;}
+      if (curSlide >= slideCount && action == 'next'){return false;}
+      $Gallery.animate({left: ((action == 'next') ? '-=' : '+=') + slideWidth}, 'fast');
+      $Gallery.attr('title', ((action == 'next') ? ++curSlide : --curSlide) );
+      return false;
+    }
+    this.reset = function(){
+      $Gallery.animate({left: 0}, 'fast');
+      $Gallery.attr('title', 1);
+      return false;
+    } 
+  }
+
+  $(function(){
+    $Gallery = $('#gallery');
+    slideCount = $Gallery.children('div').length ;
+    slideWidth = <%= @slider.width %>;
+    $Gallery.css({width: (slideCount*slideWidth) + 'px'});
+    apoa = new slideshow($Gallery, slideCount, slideWidth);
+  })
+ </script>
+<% else %>
+ <script>
+  <!--
+  function slideshow($Gallery, slideCount, slideWidth){
+    this.scroll = function(action){
+      var curSlide = Gallery.getTitle();
+      if (curSlide <= 1 && action == 'back'){return false;}
+      if (curSlide >= slideCount && action == 'next'){return false;}
+      Animation(Gallery).by('left', ((action == 'next') ? '-' : '') + slideWidth + 'px').go(); 
+      Gallery.setTitle( ((action == 'next') ? ++curSlide : --curSlide) );
+      return false;
+    }
+    this.reset = function(){
+      Animation(Gallery).to('left', '0px').go();
+      Gallery.setTitle(1);
+      return false;
+    } 
+  }
+  Gallery = document.getElementById('gallery');
+  slideCount = Gallery.getChildNodes().length ;
+  slideWidth = <%= @slider.width %>;
+  Gallery.setStyle({width: (slideCount*slideWidth) + 'px'});
+  apoa = new slideshow(Gallery, slideCount, slideWidth);
+  -->
+ </script>
+<% end %>
+
+

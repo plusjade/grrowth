@@ -1,5 +1,5 @@
 class SlidersController < ApplicationController
-
+  layout false
   before_filter :require_user
   
   
@@ -10,7 +10,12 @@ class SlidersController < ApplicationController
   end
   
   def show
-  
+    @slider = Slider.find(
+      params[:id],
+      :conditions => { :user_id => current_user.id }
+    )
+    @slider.slides = ActiveSupport::JSON.decode(@slider.slides)
+    @preview = true;  
   end
   
   def new
