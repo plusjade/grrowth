@@ -36,6 +36,8 @@ class DeployController < ApplicationController
   
   
   def update_cache
+    Dir.mkdir 'tmp/cache' if !File.directory?('tmp/cache')
+    
     f = File.new(@path, "w+")
     f.write(build_page)
     f.rewind    
