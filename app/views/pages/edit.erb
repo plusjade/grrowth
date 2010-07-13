@@ -69,7 +69,7 @@
   </div>
 
 <script type="text/javascript">
-
+$(function(){
   var editor = CodeMirror.fromTextArea('page_body_helper', {
     width: "820px",
     height: "700px",
@@ -101,5 +101,6 @@
 
   editor.setCode($('textarea#page_body').val());
   cssEditor.setCode($('textarea#page_css').val());
+})
 </script>
 
