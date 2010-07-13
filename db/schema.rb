@@ -12,11 +12,11 @@
 ActiveRecord::Schema.define(:version => 20100710104147) do
 
   create_table "pages", :force => true do |t|
-    t.integer  "user_id"          :null => false
-    t.string   "name"             :null => false
-    t.text     "body"             :null => false
-    t.string   "fb_sig_page_id"   :null => false
-    t.text     "css"              :null => false
+    t.integer  "user_id",          :null => false
+    t.string   "name",             :null => false
+    t.text     "body",             :null => false
+    t.string   "fb_sig_page_id",   :null => false
+    t.text     "css",              :null => false
     t.datetime "created_at"
     t.datetime "updated_at" 
   end
