@@ -101,6 +101,13 @@ $(function(){
 
   editor.setCode($('textarea#page_body').val());
   cssEditor.setCode($('textarea#page_css').val());
+  
+ // overload save button for saving a page
+  $('button#save-page').click(function(){
+    $('textarea#page_body').val(editor.getCode());
+    $('textarea#page_css').val(cssEditor.getCode());
+  });
+    
 })
 </script>
 

@@ -72,11 +72,6 @@
       });
       return false;
     },
-   // overload save button for saving a page
-    'button#save-page' : function(e){
-      $('textarea#page_body').val(editor.getCode());
-      $('textarea#page_css').val(cssEditor.getCode());
-    },
         
     // delete a resource using REST.
     'a.delete' : function(e){
