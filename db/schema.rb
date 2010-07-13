@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20100710104147) do
     t.datetime "updated_at" 
   end
 
-  add_index "pages", ["fb_sig_page_id"], :name => "fb_sig_page_id"
+  add_index "pages", ["fb_sig_page_id"], { :name => "fb_sig_page_id", :unique => true }
 
   create_table "sliders", :force => true do |t|
     t.integer  "user_id",     :null => false
