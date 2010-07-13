@@ -47,6 +47,7 @@ class DeployController < ApplicationController
   def build_page
     @page = Page.first(:conditions => { :fb_sig_page_id => @id })
     return render_to_string(:template => "deploy/generic.erb") if @page.nil?  
+    return '<div style="text-align:center">Be Back Shortly!</div>' if !@page.publish 
     
     @page.css.gsub!("\n", '')
     matches = @page.body.match(/\[#slider:(\d+)\]/)

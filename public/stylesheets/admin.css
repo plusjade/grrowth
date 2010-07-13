@@ -407,7 +407,7 @@ ul#slides-list div textarea {
 
 
 table.page-head {width:100%; margin-bottom:15px;}
-table.page-head td {vertical-align:top; text-align:center;}
+table.page-head td {vertical-align:middle; text-align:center; overflow:hidden;}
 table.page-head label {font-weight:bold;}
 
 .CodeMirror-line-numbers {

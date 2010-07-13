@@ -3,16 +3,20 @@
 
   <table class="page-head">
     <tr>
-      <td style="width:250px;">
+      <td style="width:230px;">
         <%= f.label "Page Name" %> <span class="star_req">*</span>
-        <%= f.text_field :name, {:rel => 'text_req', :style => 'width:150px' } %>
+        <%= f.text_field :name, {:rel => 'text_req', :style => 'width:130px' } %>
       </td>
-      <td style="width:360px;">
-        <%= f.label 'Facebook Page/Profile ID' %> <span class="star_req">*</span>
-        <%= f.text_field :fb_sig_page_id, {:rel => 'text_req', :style => 'width:150px' } %>
+      <td style="width:250px;">
+        <%= f.label 'FB Page/Profile ID' %> <span class="star_req">*</span>
+        <%= f.text_field :fb_sig_page_id, {:rel => 'text_req', :style => 'width:120px' } %>
+      </td>
+      <td style="width:120px;">
+        <%= f.label :publish %>
+        <%= f.check_box(:publish) %> (yes)
       </td>
       <td class="buttons" style="width:140px;">
-        <%= link_to 'Facebook Preview', 'http://apps.facebook.com/aplanofattack/deploy/preview/' + @page.fb_sig_page_id, {:target => '_blank', :class => 'positive', :style => 'float:right;position:relative;top:3px'} %>
+        <%= link_to 'Facebook Preview', 'http://apps.facebook.com/aplanofattack/deploy/preview/' + @page.fb_sig_page_id, {:target => '_blank', :class => 'positive', :style => 'float:right; position:relative;'} %>
       </td>
       <td class="buttons" style="width:120px;">
         <button id="save-page" type="submit" class="positive" style="float:right">Save Changes</button>

@@ -9,29 +9,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100710104147) do
+ActiveRecord::Schema.define(:version => 20100713121512) do
 
   create_table "pages", :force => true do |t|
-    t.integer  "user_id",          :null => false
-    t.string   "name",             :null => false
-    t.text     "body",             :null => false
-    t.string   "fb_sig_page_id",   :null => false
-    t.text     "css",              :null => false
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "body"
     t.datetime "created_at"
-    t.datetime "updated_at" 
+    t.datetime "updated_at"
+    t.string   "fb_sig_page_id"
+    t.text     "css"
+    t.boolean  "publish",        :default => false
   end
 
-  add_index "pages", ["fb_sig_page_id"], { :name => "fb_sig_page_id", :unique => true }
+  add_index "pages", ["fb_sig_page_id"], :name => "fb_sig_page_id"
 
   create_table "sliders", :force => true do |t|
-    t.integer  "user_id",     :null => false
-    t.integer  "page_id",     :null => false
-    t.string   "name",        :null => false
+    t.integer  "user_id",                    :null => false
+    t.integer  "page_id",                    :null => false
+    t.string   "name",                       :null => false
     t.integer  "slide_count", :default => 0, :null => false
-    t.integer  "height",      :default => 400, :null => false
-    t.integer  "width",       :default => 650, :null => false
-    t.text     "slides",      :null => false
-    t.text     "css",         :null => false
+    t.integer  "height",                     :null => false
+    t.integer  "width",                      :null => false
+    t.text     "slides",                     :null => false
+    t.text     "css",                        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
