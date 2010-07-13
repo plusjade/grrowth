@@ -5,13 +5,27 @@
   <title>Facebook app creator</title>
   <%= stylesheet_link_tag "global" %>
   <% javascript_include_tag "jquery-1.4.2.min" %>
-
+  <style type="text/css">
+    ul#main-links {list-style:none; margin:0; padding:0;}
+    ul#main-links li { display:inline; margin-right:10px;}
+  </style>
   
 </head>
 <body>
+  <div id="wrapper">
+    <div id="header">
+      <h1 style="margin-top:20px;">Cool Custom Facebook Page Creator For Codeachus</h1>
+    
+      <ul id="main-links">
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Sign Up', new_account_path %></li>
+        <li><%= link_to 'Log in', account_path %></li>
+      </ul>
+    </div>
+    
+    <%= yield %>
   
-  <%= yield %>
-
+  </div>
   <script type="text/javascript">
   </script>  
 </body>
