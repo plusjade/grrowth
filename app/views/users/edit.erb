@@ -1,9 +1,8 @@
 <h1>Edit My Account</h1>
-shop name : <%= @user.shop.name %>
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Update" %>
 <% end %>
 
-<br /><%= link_to "My Profile", account_path %>
+<br /><%= link_to "My Profile", account_path, :rel => 'facebox' %>

@@ -23,21 +23,42 @@ class UsersController < ApplicationController
   
   def show
     @user = @current_user
+    render :template => 
+      'users/show',
+      :layout => false,
+      :locals => {:user => @user} if request.xhr?
   end
 
 
   def edit
     @user = @current_user
+    render :template => 
+      'users/edit',
+      :layout => false,
+      :locals => {:user => @user} if request.xhr?
   end
   
   
   def update
-    @user = @current_user # makes our views "cleaner" and more consistent
+    @user = @current_user
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Account updated!"
-      redirect_to account_url
+      render :json => 
+      {
+        'status' => 'good',
+        'msg'    => "Account Updated!"
+      }
+    elsif !@user.valid?
+      render :json => 
+      {
+        'status' => 'bad',
+        'msg'    => "Oops! Please make sure all fields are valid!"
+      }
     else
-      render :action => :edit
+      render :json => 
+      {
+        'status' => 'bad',
+        'msg'    => "Oops! Please try again!"
+      }
     end
   end
   

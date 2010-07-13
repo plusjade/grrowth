@@ -16,7 +16,7 @@
       <tr>
         <td style="width:450px">
           <ul id="admin-links">
-            <li><%= link_to 'Account', account_path %></li>
+            <li><%= link_to 'Account', account_path, :rel => 'facebox' %></li>
             <li><%= link_to 'Logout', '/user_sessions/destroy' %></li>
             <li><%= link_to 'My Pages', pages_path, :rel => 'facebox' %></li>
           </ul>        
