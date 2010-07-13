@@ -19,7 +19,7 @@ class DeployController < ApplicationController
     render :text => 'Page not found' and return if @page.nil?
     
     matches = @page.body.match(/\[#slider:(\d+)\]/)
-    @page.body.gsub!("[#slider:#{matches[1]}]", widgets('slider', matches[1], true) ) unless matches.nil?
+    @page.body.gsub!("[#slider:#{matches[1]}]", widgets('slider', matches[1], false) ) unless matches.nil?
     @page.body.gsub!('[:path]', 'http://grrowth.com/system')
     render :template => "deploy/index.erb"
   end
@@ -50,21 +50,20 @@ class DeployController < ApplicationController
     
     @page.css.gsub!("\n", '')
     matches = @page.body.match(/\[#slider:(\d+)\]/)
-    @page.body.gsub!("[#slider:#{matches[1]}]", widgets('slider', matches[1], false) ) unless matches.nil?
+    @page.body.gsub!("[#slider:#{matches[1]}]", widgets('slider', matches[1], true) ) unless matches.nil?
     @page.body.gsub!('[:path]', 'http://grrowth.com/system')
     return render_to_string(:template => "deploy/index.erb") 
   end  
 
   # render the view for a widget
-  def widgets(type, id, preview)
-    @slider = Slider.first(:conditions => {
-      :id => id, :page_id => @page.id
-    })
+  def widgets(type, id, to_facebook)
+    @slider = Slider.first(:conditions => { :id => id, :page_id => @page.id })
     return '[Invalid Slider ID!]' if @slider.nil?
     @slider.slides = ActiveSupport::JSON.decode(@slider.slides)
+    @slider.slides = [] unless @slider.slides.is_a?(Array)
     
     # facebook always posts to our pages
-    @preview = (request.post?) ? false : preview;
+    @to_facebook  = (request.post?) ? true : to_facebook;
     return render_to_string(:template => "sliders/show")
   end 
    

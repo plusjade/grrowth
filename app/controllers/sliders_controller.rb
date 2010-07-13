@@ -18,7 +18,7 @@ class SlidersController < ApplicationController
     )
     @slider.slides = ActiveSupport::JSON.decode(@slider.slides)
     @slider.slides = [] unless @slider.slides.is_a?(Array)  
-    @preview = true;  
+    @to_facebook = false;
   end
   
   

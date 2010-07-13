@@ -22,7 +22,32 @@
   <a href="#" onclick="apoa.reset(); return false;">Reset</a>
 </div>
 
-<% if @preview %>
+<% if @to_facebook %>
+ <script>
+  <!--
+  function slideshow($Gallery, slideCount, slideWidth){
+    this.scroll = function(action){
+      var curSlide = Gallery.getTitle();
+      if (curSlide <= 1 && action == 'back'){return false;}
+      if (curSlide >= slideCount && action == 'next'){return false;}
+      Animation(Gallery).by('left', ((action == 'next') ? '-' : '') + slideWidth + 'px').go(); 
+      Gallery.setTitle( ((action == 'next') ? ++curSlide : --curSlide) );
+      return false;
+    }
+    this.reset = function(){
+      Animation(Gallery).to('left', '0px').go();
+      Gallery.setTitle(1);
+      return false;
+    } 
+  }
+  Gallery = document.getElementById('gallery');
+  slideCount = Gallery.getChildNodes().length ;
+  slideWidth = <%= @slider.width %>;
+  Gallery.setStyle({width: (slideCount*slideWidth) + 'px'});
+  apoa = new slideshow(Gallery, slideCount, slideWidth);
+  -->
+ </script>
+<% else %>
  <script type="text/javascript">
   /* preview mode using jquery */ 
   function slideshow($Gallery, slideCount, slideWidth){
@@ -48,31 +73,6 @@
     $Gallery.css({width: (slideCount*slideWidth) + 'px'});
     apoa = new slideshow($Gallery, slideCount, slideWidth);
   })
- </script>
-<% else %>
- <script>
-  <!--
-  function slideshow($Gallery, slideCount, slideWidth){
-    this.scroll = function(action){
-      var curSlide = Gallery.getTitle();
-      if (curSlide <= 1 && action == 'back'){return false;}
-      if (curSlide >= slideCount && action == 'next'){return false;}
-      Animation(Gallery).by('left', ((action == 'next') ? '-' : '') + slideWidth + 'px').go(); 
-      Gallery.setTitle( ((action == 'next') ? ++curSlide : --curSlide) );
-      return false;
-    }
-    this.reset = function(){
-      Animation(Gallery).to('left', '0px').go();
-      Gallery.setTitle(1);
-      return false;
-    } 
-  }
-  Gallery = document.getElementById('gallery');
-  slideCount = Gallery.getChildNodes().length ;
-  slideWidth = <%= @slider.width %>;
-  Gallery.setStyle({width: (slideCount*slideWidth) + 'px'});
-  apoa = new slideshow(Gallery, slideCount, slideWidth);
-  -->
  </script>
 <% end %>
 
