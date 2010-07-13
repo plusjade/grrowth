@@ -109,15 +109,15 @@ table.top-bar td{
   overflow:hidden;
 }
 
-ul.admin-links {
+ul#admin-links {
   list-style:none;
   padding:5px;
 }
-ul.admin-links li {
+ul#admin-links li {
   display:inline;
   margin-right:10px;
 }
-ul.admin-links li a {
+ul#admin-links li a {
 }
 
 

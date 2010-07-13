@@ -11,23 +11,24 @@
     })    
   }
   
-  $('ul#pages-list li a.edit').click(function(){
-    loadInto(this.href, '#holder', function(){
-      $('ul#page-tabs li a:first').click();
-    })
-    return false;
-  })
-  
 /* delegations
 ------------------------------- 
 ------------------------------- */    
   $('body').click($.delegate({
-   'a[rel*=facebox]' :function(e){
+    'a[rel*=facebox]' :function(e){
       $.facebox(function(){ 
         $.get(e.target.href, function(data) { $.facebox(data) })
       })
       return false;
-   },
+    },
+    'ul#pages-list li a.edit' : function(e){
+      $.facebox.close();
+      loadInto(e.target.href, '#holder', function(){
+        $('ul#page-tabs li a:first').click();
+      })
+      return false;
+    },
+  
    // activate tab navigation for page editing panel
     'ul#page-tabs li a' : function(e){
       $('div.tab-content').hide();
@@ -68,7 +69,28 @@
          $('ul#widget-tabs li a:first').click();
       });
       return false;
-    },  
+    },
+    
+    // delete a resource using REST.
+    'a.delete' : function(e){
+      $.ajax({
+        type: 'DELETE',
+        dataType:'json',
+        url: e.target.href,
+        beforeSend: function(){
+          if(!confirm('Sure you want to delete?')) return false;
+          $(document).trigger('submitting');
+        },
+        success: function(rsp){
+          $(document).trigger('responding', rsp);
+          if($(e.target).attr('rel') == 'pages'){
+            $(e.target).parent('li').remove();
+            $('#holder').empty();
+          }
+        }
+      })
+      return false;    
+    }, 
 /*
   edit sliders environment
 */ 
@@ -106,6 +128,14 @@
         $(document).trigger('submitting');
       },
       success: function(rsp) {
+        if(undefined != rsp.created){
+          if(rsp.created.resource == 'pages'){
+            $.facebox.close();
+            loadInto('/pages/'+ rsp.created.id +'/edit', '#holder', function(){
+              $('ul#page-tabs li a:first').click();
+            })         
+          }   
+        }
         $(document).trigger('responding', rsp);
         $('form button').removeAttr('disabled').addClass('positive');
       }

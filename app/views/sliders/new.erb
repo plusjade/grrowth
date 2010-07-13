@@ -1,0 +1,27 @@
+
+<% form_for(:slider, @slider, :url => page_sliders_path(@page) ) do |f| %>
+  <%= f.error_messages %>
+  <table class="page-head">
+    <tr>
+      <td style="width:250px;">
+        <%= f.label :name %> <span class="star_req">*</span>
+        <%= f.text_field :name,  {:style => 'width:150px', :rel => 'text_req' } %>
+      </td>
+      <td style="width:150px;">
+        <%= f.label :width %> <span class="star_req">*</span>
+        <%= f.text_field :width, {:style => 'width:50px', :rel => 'text_req' } %>px
+      </td>
+      
+      <td style="width:150px;">
+        <%= f.label :height %> <span class="star_req">*</span>
+        <%= f.text_field :height,  {:style => 'width:50px', :rel => 'text_req' } %>px
+      </td>
+         
+      <td class="buttons" style="width:120px;">
+        <button type="submit" class="positive">Save Changes</button>
+      </td>
+    </tr>
+  </table>
+
+<% end %> 
+

@@ -1,5 +1,5 @@
 
-<% form_for @slider do |f| %>
+<% form_for(:slider, @slider, :url => page_slider_path(@page, @slider) ) do |f| %>
   <%= f.error_messages %>
   
   <table class="page-head">
@@ -25,7 +25,7 @@
   </table>
 
   <ul id="widget-tabs">
-    <li><a href="<%=slider_path(@slider)%>" rel="tab-widget-view" id="loadachu">Quick View</a></li>
+    <li><a href="<%= page_slider_path(@page, @slider)%>" rel="tab-widget-view" id="loadachu">Quick View</a></li>
     <li><a href="#slides" rel="tab-widget-slides">Slides</a></li>
     <li><a href="#css" rel="tab-widget-css">CSS</a></li>
   </ul> 

@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   before_filter :require_user
     
   def index
-    render :text => 'nothing'
+    @user = current_user
   end
 
 
@@ -22,10 +22,6 @@ class PagesController < ApplicationController
   def new
     @user = current_user
     @page = @user.pages.build
-    render :template => 
-      'pages/new',
-      :layout => false,
-      :locals => {:page => @page} if request.xhr?
   end
 
 
@@ -61,10 +57,6 @@ class PagesController < ApplicationController
       params[:id], 
       :conditions => { :user_id => current_user.id }
     )
-    render :template =>
-      'pages/edit',
-      :layout => false,
-      :locals => {:page => @page} if request.xhr?
   end
 
 
@@ -101,8 +93,11 @@ class PagesController < ApplicationController
       :conditions => { :user_id => current_user.id }
     )
     @page.destroy
-
-    
+    render :json => 
+    {
+      'status' => 'warn',
+      'msg'    => "Page deleted! =("
+    }
   end
 
  

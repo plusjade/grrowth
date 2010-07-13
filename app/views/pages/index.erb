@@ -1,8 +1,37 @@
 
-Some Pages:
+<h3>My Pages</h3>
+<div style="padding:10px; margin-bottom:10px">
+  <ul id="pages-list">
+  <% @user.pages.each do |page| %>
+    <li>
+      <%= link_to page.name, edit_page_path(page), :class => 'edit' %>
+      <%= link_to '[delete]', page_path(page), :class => 'delete', :rel => 'pages' %>
+    </li>
+  <% end %>
+  </ul>
+</div>
 
-<ul>
-<% @pages.each do |page| %>
-  <li><%= link_to page.name, page_path(page) %> <%= link_to '[edit]', edit_page_path(page) %></li>
+<% form_for(@user.pages.build) do |f| %>
+  <%= f.error_messages %>
+  <h3>Create New Page</h3>
+  
+  <div class="right-half">
+  
+    <fieldset>
+      <%= f.label 'Facebook Page or Profile ID' %> <span class="star_req">*</span>
+      <br /><%= f.text_field :fb_sig_page_id, :rel => 'text_req', :tabindex => 2 %>
+    </fieldset>
+    
+    <fieldset class="buttons">
+      <button type="submit" class="positive" tabindex="3" accesskey="enter">Add New Page</button>
+    </fieldset>    
+  </div>
+  
+  <div class="left-half">
+    
+    <fieldset>
+      <%= f.label :name %> <span class="star_req">*</span>
+      <br /><%= f.text_field :name, :rel => 'text_req', :tabindex => 1 %>
+    </fieldset>    
+  </div>
 <% end %>
-</ul>

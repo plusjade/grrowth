@@ -14,19 +14,12 @@
   <div id="wrapper">
     <table class="top-bar">
       <tr>
-        <td style="width:250px">
-          <ul class="admin-links">
+        <td style="width:450px">
+          <ul id="admin-links">
             <li><%= link_to 'Account', account_path %></li>
             <li><%= link_to 'Logout', '/user_sessions/destroy' %></li>
-            <%= link_to 'New Page', new_page_path, :rel => 'facebox' %>
+            <li><%= link_to 'My Pages', pages_path, :rel => 'facebox' %></li>
           </ul>        
-        </td>
-        <td style="width:250px">
-          <ul id="pages-list">
-          <% @user.pages.each do |page| %>
-            <li><%= link_to page.name, edit_page_path(page), :class => 'edit' %></li>
-          <% end %>
-          </ul>
         </td>
         <td class="status">
           <div class="submitting" style="display:none">Submitting..</div>
@@ -45,7 +38,7 @@
   
 <script type="text/javascript">
   $(function(){
-   
+    $('ul#admin-links li a:last').click();
   });
 </script>  
 </body>

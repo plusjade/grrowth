@@ -16,13 +16,13 @@
           <%= link_to 'Facebook Preview', 'http://apps.facebook.com/aplanofattack/deploy/index/' + @page.fb_sig_page_id, {:target => '_blank', :class => 'positive', :style => 'float:right;position:relative;top:3px'} %>
         </td>
         <td class="buttons" style="width:120px;">
-          <button type="submit" class="positive" style="float:right">Save Changes</button>
+          <button id="save-page" type="submit" class="positive" style="float:right">Save Changes</button>
         </td>
       </tr>
     </table>
       
   <ul id="page-tabs">
-    <li><a href="deploy/preview/<%= page.fb_sig_page_id %>" rel="tab-view" id="load">Quick View</a></li>
+    <li><a href="deploy/preview/<%= @page.fb_sig_page_id %>" rel="tab-view" id="load">Quick View</a></li>
     <li><a href="#body" rel="tab-body">Body</a></li>
     <li><a href="#css" rel="tab-css">CSS</a></li>
     <li><a href="#widget" rel="tab-widget">Widgets</a></li>
@@ -49,10 +49,12 @@
       <div id="tab-widget" class="tab-content">
         <div style="padding:5px;background:#ffffcc;margin-bottom:10px;">
           <h3>Slideshows</h3>
+          <%= link_to 'New Slideshow!', new_page_slider_path(@page), :rel => 'facebox' %>
           <ul class="widget-list">
           <% @page.sliders.each do |slider| %>
             <li>
-              <%= link_to slider.name, edit_slider_path(slider) %> => <b>[#slider:<%=slider.id%>]</b>
+              <%= link_to slider.name, edit_page_slider_path(@page, slider) %> => <b>[#slider:<%=slider.id%>]</b>
+               <%= link_to '[delete]', page_slider_path(@page, slider), :confirm => 'Are you sure?', :method => :delete %>
             </li>
           <% end %>
           </ul>
@@ -88,7 +90,11 @@
     path: "/javascripts/codemirror/",
     continuousScanning: 500,
     lineNumbers: true,
-    textWrapping: false
+    textWrapping: false,
+    saveFunction: function(){
+      $('textarea#page_body').val(editor.getCode());
+      $('form.edit_page').submit();
+    }
   });
 
   var cssEditor = CodeMirror.fromTextArea('page_css', {
@@ -98,7 +104,11 @@
     stylesheet: "/stylesheets/codemirror/csscolors.css?3453",
     path: "/javascripts/codemirror/",
     continuousScanning: 500,
-    lineNumbers: true
+    lineNumbers: true,
+    saveFunction: function(){
+      $('textarea#page_css').val(cssEditor.getCode());
+      $('form.edit_page').submit();
+    }
   });
 </script>
 

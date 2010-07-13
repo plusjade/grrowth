@@ -41,11 +41,11 @@ p {margin-bottom:10px;}
 
 
 /*---------- Formatting ----------*/
-h1,h2,h3,h4,h5,h6{color:#303030; margin-bottom:6px;}
+h1,h2,h3,h4,h5,h6{color:#303030; margin-bottom:6px; font-weight:bold;}
 h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{color:#303030; text-decoration:none;}
-h1{ font-size:22px; font-weight:normal;}
-h2{ font-size:19px; font-weight:normal;}
-h3{ font-size:18px; font-weight:normal;}
+h1{ font-size:22px; }
+h2{ font-size:19px; }
+h3{ font-size:18px; }
 h4{	font-size:16px; font-weight:bold;}
 h5{ font-size:14px; font-weight:bold;}
 h6{ font-size:12px; font-weight:bold;}
