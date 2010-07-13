@@ -4,11 +4,11 @@ class CreateSliders < ActiveRecord::Migration
       t.references :user
       t.references :page
       t.string :name
-      t.integer :slide_count
-      t.integer :height
-      t.integer :width      
-      t.text :slides
-      t.text :css
+      t.integer :slide_count, :default => 0, :null => false
+      t.integer :height, :default => 400, :null => false
+      t.integer :width,  :default => 650, :null => false      
+      t.text :slides, :null => false
+      t.text :css, :null => false
       t.timestamps
     end
   end

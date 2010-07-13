@@ -5,8 +5,10 @@ class SlidersController < ApplicationController
   
   def index
     @sliders = Slider.all(
-      :conditions => { :user_id => current_user.id, :page_id => 1 }
+      :select => "id, name",
+      :conditions => { :user_id => current_user.id, :page_id => params[:page_id] }
     )
+    render :json => @sliders
   end
   
   def show
@@ -15,15 +17,28 @@ class SlidersController < ApplicationController
       :conditions => { :user_id => current_user.id }
     )
     @slider.slides = ActiveSupport::JSON.decode(@slider.slides)
+    @slider.slides = [] unless @slider.slides.is_a?(Array)  
     @preview = true;  
   end
   
+  
+  def edit
+    @slider = Slider.find(
+      params[:id],
+      :conditions => { :user_id => current_user.id }
+    )
+    @slider.slides = ActiveSupport::JSON.decode(@slider.slides)
+    @slider.slides = [] unless @slider.slides.is_a?(Array)  
+  end
+   
+    
   def new
     @page = Page.find(params[:page_id])
     @slider = @page.sliders.build
     @slider.height = 400
     @slider.width = 650
   end
+  
   
   def create
     @page = Page.find(params[:page_id])
@@ -34,8 +49,8 @@ class SlidersController < ApplicationController
       render :json =>
       {
         'status'  => 'good',
-        'msg'     => 'Slider created!',
-        'created' => { 'resource' => 'pages', 'id' => @slider.id }
+        'msg'     => 'Slideshow created!',
+        'created' => { 'resource' => 'sliders', 'id' => @slider.id }
       }
     elsif !@slider.valid?
       render :json => 
@@ -52,23 +67,15 @@ class SlidersController < ApplicationController
     end  
   end
   
-  def edit
-    @slider = Slider.find(
-      params[:id],
-      :conditions => { :user_id => current_user.id, :page_id => 1 }
-    )
-    @slider.slides = ActiveSupport::JSON.decode(@slider.slides)  
-  end
-  
 
   def update
     @slider = Slider.find(
       params[:id],
-      :conditions => { :user_id => current_user.id, :page_id => 1 }
+      :conditions => { :user_id => current_user.id }
     ) 
-    
+
     slides = Array.new
-    params[:slider_slides].each { |key, value| slides[key.to_i] = (value) }
+    params[:slider_slides].each { |key, value| slides[key.to_i] = (value) } if ( !params[:slider_slides].nil? && params[:slider_slides].is_a?(Object) )
     params[:slider][:slides] = slides.compact.to_json
     
     if @slider.update_attributes(params[:slider])
@@ -97,7 +104,7 @@ class SlidersController < ApplicationController
     render :json =>
     {
       'status' => 'warn',
-      'msg'    => "Slider Destroyed!"
+      'msg'    => "Slideshow deleted!"
     }
   end
     

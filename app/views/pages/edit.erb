@@ -2,32 +2,36 @@
 <% form_for @page do |f| %>
   <%= f.error_messages %>
 
-    <table class="page-head">
-      <tr>
-        <td style="width:250px;">
-          <%= f.label "Page Name" %> <span class="star_req">*</span>
-          <%= f.text_field :name, {:rel => 'text_req', :style => 'width:150px' } %>
-        </td>
-        <td style="width:360px;">
-          <%= f.label 'Facebook Page/Profile ID' %> <span class="star_req">*</span>
-          <%= f.text_field :fb_sig_page_id, {:rel => 'text_req', :style => 'width:150px' } %>
-        </td>
-        <td class="buttons" style="width:140px;">
-          <%= link_to 'Facebook Preview', 'http://apps.facebook.com/aplanofattack/deploy/index/' + @page.fb_sig_page_id, {:target => '_blank', :class => 'positive', :style => 'float:right;position:relative;top:3px'} %>
-        </td>
-        <td class="buttons" style="width:120px;">
-          <button id="save-page" type="submit" class="positive" style="float:right">Save Changes</button>
-        </td>
-      </tr>
-    </table>
+  <table class="page-head">
+    <tr>
+      <td style="width:250px;">
+        <%= f.label "Page Name" %> <span class="star_req">*</span>
+        <%= f.text_field :name, {:rel => 'text_req', :style => 'width:150px' } %>
+      </td>
+      <td style="width:360px;">
+        <%= f.label 'Facebook Page/Profile ID' %> <span class="star_req">*</span>
+        <%= f.text_field :fb_sig_page_id, {:rel => 'text_req', :style => 'width:150px' } %>
+      </td>
+      <td class="buttons" style="width:140px;">
+        <%= link_to 'Facebook Preview', 'http://apps.facebook.com/aplanofattack/deploy/index/' + @page.fb_sig_page_id, {:target => '_blank', :class => 'positive', :style => 'float:right;position:relative;top:3px'} %>
+      </td>
+      <td class="buttons" style="width:120px;">
+        <button id="save-page" type="submit" class="positive" style="float:right">Save Changes</button>
+      </td>
+    </tr>
+  </table>
+  <%= f.text_area :body, :style => 'display:none' %>
+  <%= f.text_area :css, :style => 'display:none' %>
+<% end %>
       
   <ul id="page-tabs">
-    <li><a href="deploy/preview/<%= @page.fb_sig_page_id %>" rel="tab-view" id="load">Quick View</a></li>
+    <li><a href="deploy/preview/<%= @page.fb_sig_page_id %>" rel="tab-view" id="load">View Page</a></li>
     <li><a href="#body" rel="tab-body">Body</a></li>
     <li><a href="#css" rel="tab-css">CSS</a></li>
     <li><a href="#widget" rel="tab-widget">Widgets</a></li>
   </ul>
-  <div id="main">
+
+  <div id="main" rel="<%= @page.id %>">
     <div id="content">
 
       <div id="tab-view" class="tab-content">
@@ -36,25 +40,25 @@
         
       <div id="tab-body" class="tab-content">
         <fieldset style="clear:both">
-          <%= f.text_area :body, :style => 'width:99%;height:400px;' %>
+          <textarea id="page_body_helper"></textarea>
         </fieldset>
       </div>
      
       <div id="tab-css" class="tab-content">
         <fieldset style="clear:both">
-          <%= f.text_area :css, :style => 'width:99%;height:400px;' %>
+          <textarea id="page_css_helper"></textarea>
         </fieldset>
       </div>
 
       <div id="tab-widget" class="tab-content">
         <div style="padding:5px;background:#ffffcc;margin-bottom:10px;">
           <h3>Slideshows</h3>
-          <%= link_to 'New Slideshow!', new_page_slider_path(@page), :rel => 'facebox' %>
+          <%= link_to 'New Slideshow', new_page_slider_path(@page), :rel => 'facebox' %>
           <ul class="widget-list">
           <% @page.sliders.each do |slider| %>
             <li>
-              <%= link_to slider.name, edit_page_slider_path(@page, slider) %> => <b>[#slider:<%=slider.id%>]</b>
-               <%= link_to '[delete]', page_slider_path(@page, slider), :confirm => 'Are you sure?', :method => :delete %>
+              <%= link_to slider.name, edit_slider_path(slider), :class => 'edit' %> => <b>[#slider:<%=slider.id%>]</b>
+               <%= link_to '[delete]', slider_path(slider), :class => 'delete', :rel => 'sliders' %>
             </li>
           <% end %>
           </ul>
@@ -62,10 +66,9 @@
         <div id="widget-wrapper"></div>
       </div>
       
-      
     </div>
   </div>
-<% end %>
+
 
 
 <style type="text/css">
@@ -82,7 +85,7 @@
 </style>
 <script type="text/javascript">
 
-  var editor = CodeMirror.fromTextArea('page_body', {
+  var editor = CodeMirror.fromTextArea('page_body_helper', {
     width: "820px",
     height: "700px",
     parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "parsehtmlmixed.js"],
@@ -97,7 +100,7 @@
     }
   });
 
-  var cssEditor = CodeMirror.fromTextArea('page_css', {
+  var cssEditor = CodeMirror.fromTextArea('page_css_helper', {
     width: "820px",
     height: "700px",
     parserfile: "parsecss.js",
@@ -110,5 +113,8 @@
       $('form.edit_page').submit();
     }
   });
+
+  editor.setCode($('textarea#page_body').val());
+  cssEditor.setCode($('textarea#page_css').val());
 </script>
 

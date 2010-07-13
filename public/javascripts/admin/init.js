@@ -1,6 +1,7 @@
 ;$(document).ready(function(){
   var loading = '<div class="loading">Loading...</div>';
-  function addNew(index){ return '<li><div class="info"><span>Slide '+ index +' </span><a href="#" class="delete">[x]</a><a href="#" class="edit">edit</a></div><div class="edit"><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']">slide number: '+ index +'</textarea></div></li>';};
+  function addNew(index){ return '<li><div class="info"><span>Slide '+ index +' </span><a href="#" class="remove">[x]</a><a href="#" class="edit">edit</a></div><div class="edit"><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']">slide number: '+ index +'</textarea></div></li>';};
+  function newSlider(s) { return '<li><a href="/sliders/'+s.id+'/edit" class="edit">'+s.name+'</a> => <b>[#slider:'+s.id+']</b>  <a href="/sliders/'+s.id+'" class="delete" rel="sliders">[delete]</a></li>'};
   
   function loadInto(url, div, callback){
     $(div).html(loading);
@@ -21,6 +22,7 @@
       })
       return false;
     },
+    // load pages into the editing environment
     'ul#pages-list li a.edit' : function(e){
       $.facebox.close();
       loadInto(e.target.href, '#holder', function(){
@@ -64,13 +66,18 @@
     },
     
    // load widgets editable environment
-    'ul.widget-list li a' : function(e){
+    'ul.widget-list li a.edit' : function(e){
       loadInto(e.target.href, 'div#widget-wrapper', function(){
          $('ul#widget-tabs li a:first').click();
       });
       return false;
     },
-    
+   // overload save button for saving a page
+    'button#save-page' : function(e){
+      $('textarea#page_body').val(editor.getCode());
+      $('textarea#page_css').val(cssEditor.getCode());
+    },
+        
     // delete a resource using REST.
     'a.delete' : function(e){
       $.ajax({
@@ -86,6 +93,10 @@
           if($(e.target).attr('rel') == 'pages'){
             $(e.target).parent('li').remove();
             $('#holder').empty();
+          }
+          if($(e.target).attr('rel') == 'sliders'){
+            $(e.target).parent('li').remove();
+            $('div#widget-wrapper').empty();
           }
         }
       })
@@ -109,7 +120,7 @@
       $(e.target).parent().next('div').toggle();
       return false;
     },  
-    'ul#slides-list a.delete' :function(e){
+    'ul#slides-list a.remove' :function(e){
       $(e.target).parent().parent('li').remove();
       return false;
     }   
@@ -134,8 +145,23 @@
             loadInto('/pages/'+ rsp.created.id +'/edit', '#holder', function(){
               $('ul#page-tabs li a:first').click();
             })         
-          }   
+          }  
+          if(rsp.created.resource == 'sliders'){
+            $.facebox.close();
+            loadInto('/sliders/'+ rsp.created.id +'/edit', 'div#widget-wrapper', function(){
+               $('ul#widget-tabs li a:first').click();
+            });
+            // update sliders list.
+            $.getJSON('/pages/'+$('#main').attr('rel')+'/sliders.json', function(rsp){
+              var links = '';
+              $.each(rsp, function(){
+                links += newSlider(this.slider);
+              });
+              $('ul.widget-list').html(links);
+            })
+          }  
         }
+
         $(document).trigger('responding', rsp);
         $('form button').removeAttr('disabled').addClass('positive');
       }

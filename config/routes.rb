@@ -38,6 +38,8 @@ ActionController::Routing::Routes.draw do |map|
     pages.resources :sliders, :name_prefix => "page_"
   end
     
+  map.resources :sliders
+    
   map.root :controller => "home"
 
   # See how all your routes lay out with "rake routes"

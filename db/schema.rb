@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(:version => 20100710104147) do
   create_table "sliders", :force => true do |t|
     t.integer  "page_id"
     t.string   "name"
-    t.integer  "slide_count"
-    t.integer  "height"
-    t.integer  "width"
-    t.text     "slides"
-    t.text     "css"
+    t.integer  "slide_count", :default => 0, :null => false
+    t.integer  "height", :default => 400, :null => false
+    t.integer  "width", :default => 650, :null => false
+    t.text     "slides", :null => false
+    t.text     "css", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
