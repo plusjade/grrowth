@@ -30,20 +30,21 @@
 
   <ul id="widget-tabs">
     <li title="View sample slideshow output"><a href="<%= slider_path(@slider)%>" rel="tab-widget-view" id="loadachu">View Slideshow</a></li>
-    <li title="The Basic HTML stucture of your slideshow (READONLY)"><a href="#html" rel="tab-widget-html">Study HTML</a></li>
     <li title="Create and edit slides here"><a href="#slides" rel="tab-widget-slides">Slides</a></li>
     <li title="Edit CSS here"><a href="#css" rel="tab-widget-css">CSS</a></li>
+    <li title="The Basic HTML stucture of your slideshow (READONLY)"><a href="#html" rel="tab-widget-html">Study HTML</a></li>    
   </ul> 
 
   <div id="tab-widget-view" class="widget-tabs">
     This is the view
   </div>
 
-  <div id="tab-widget-html" class="widget-tabs">
-    <textarea id="sample-html"><%=h @html %></textarea>
-  </div>
-          
   <div id="tab-widget-slides" class="widget-tabs">
+    <div>
+      Slides can contain arbitrary HTML. Use absolute paths for images.
+      You can create and delete slides, then drag slides to arrange their order.
+      Note you must click "Save Changes" to save created, deleted, and edited slides.
+    </div>
     <a href="#" id="new-slide" style="clear:both;">New Slide</a>
     <ul id="slides-list">
       <% @slider.slides.each_with_index do |content, index| %>
@@ -62,11 +63,20 @@
   </div>
     
   <div id="tab-widget-css" class="widget-tabs">
+    Add custom CSS styling to your slideshow. Study the HTML output tab
+    to find ids, classes and tags to style. 
+    <br/>Note that much of CSS3 is not allowed in facebook but will work in your preview.
+    If your code is not working, the CSS is probably invalid.
     <fieldset>
       <%= f.text_area :css, :style => 'width:99%;height:300px;' %>
     </fieldset>
   </div>
-  
+
+  <div id="tab-widget-html" class="widget-tabs">
+    Rendered HTML output for your slideshow. Allows you to see how the slideshow is structured.
+    Note this gets updated only once on initial slideshow load.
+    <textarea id="sample-html"><%=h @html %></textarea>
+  </div>  
 <% end %> 
   
 

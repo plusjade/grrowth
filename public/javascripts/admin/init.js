@@ -152,7 +152,7 @@
           if(rsp.created.resource == 'sliders'){
             $.facebox.close();
             loadInto('/sliders/'+ rsp.created.id +'/edit', '#widget-wrapper', function(){
-               $('#widget-tabs li a:first').click();
+               $(document).trigger('widget.init');
             });
             updateSliders(true);
           }  

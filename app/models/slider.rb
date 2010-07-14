@@ -9,22 +9,21 @@ class Slider < ActiveRecord::Base
   def add_stock
     self.slides = "['Sample Slide 1', 'Sample Slide 2', 'Sample Slide 3']"
     self.css = '
-/* The main slideshow structure styling:
-   --------------------------------------------- */
-#slideshow-wrapper {margin:auto;}
-#gallery-wrapper { }
+/* The main slideshow structure styling. Take care when editing these main containers.*/
+#slideshow-wrapper {margin:auto;} /* center the slideshow */
+#gallery-wrapper {border:2px solid #111; }
 #gallery { }
-#gallery div.each-slide { text-align:center; }
-#gallery div span.slide-container {
-  display:block;
-  margin:auto;
-  margin-top:140px;
-  font-size:72px;
-  color:#fff;
-}
+#gallery div.each-slide {}
 
-/* back, next and reset links are styled here:
-   --------------------------------------------- */
+/* IMPORTANT: Always use the span tag to customize the slides especially when adding padding.*/
+#gallery div.each-slide span.slide-container {
+  display:block;
+  padding:20px;
+  text-align:center;
+  color:#fff;
+ }
+
+/* back, next and reset links are styled here:*/
 #buttons {position:relative; top:-50px;}
 #buttons a {
 display:block; padding:5px; line-height:40px; text-decoration:none;  font-weight:bold; font-size:40px;}
@@ -33,14 +32,13 @@ display:block; padding:5px; line-height:40px; text-decoration:none;  font-weight
 #buttons a#next-link {float:right; text-align:right;}
 #reset {text-align:center;}
 
-/* each slide has a unique id based on its position as follows:
-   --------------------------------------------- */
+/* each slide has a unique id based on its position as follows: */
 #slide-1{background:orange}
 #slide-2{background:brown}
 #slide-3{background:green}
 #slide-4{background:lightblue}
 #slide-5{background:purple}
-#slide-6{background:black}
+#slide-6{background:black}​
     '
   end
 end

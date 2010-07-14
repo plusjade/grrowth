@@ -1,11 +1,11 @@
 
-<style type="text/css" id="slide-widget">
+<style type="text/css" id="slide-widget"><%= @slider.css.gsub("\n", '') %></style>
+<style type="text/css">
 #slideshow-wrapper{width:<%= @slider.width %>px;}
 #gallery-wrapper, #gallery, #gallery div.each-slide {width:<%= @slider.width %>px; height:<%= @slider.height %>px !important;}
 #gallery-wrapper{overflow:hidden !important;}
 #gallery{position: relative; left: 0px; overflow:hidden !important;}
 #gallery div.each-slide {float:left !important; }
-<%= @slider.css.gsub("\n", '') %>
 </style>
 
 <div id="slideshow-wrapper">

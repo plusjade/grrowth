@@ -378,6 +378,7 @@ ul#slides-list {
 ul#slides-list li {
   display:block;
   margin-bottom:5px;
+  cursor:move;
 }
 ul#slides-list li div.info {
   width:700px;
