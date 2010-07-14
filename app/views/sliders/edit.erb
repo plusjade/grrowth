@@ -17,7 +17,11 @@
         <%= f.label :height %> <span class="star_req">*</span>
         <%= f.text_field :height,  {:style => 'width:50px', :rel => 'text_req' } %>px
       </td>
-         
+      
+      <td class="buttons" style="width:60px;">
+        <%= link_to 'delete', slider_path(@slider), :class => 'delete negative', :rel => 'sliders' %>
+      </td>
+               
       <td class="buttons" style="width:120px;">
         <button type="submit" class="positive" id="save-slider">Save Changes</button>
       </td>

@@ -1,8 +1,22 @@
 ;$(document).ready(function(){
-  var loading = '<div class="loading">Loading...</div>';
+  loading = '<div class="loading">Loading...</div>';
   function addNew(index){ return '<li><div class="info"><span>Slide '+ index +' </span><a href="#" class="remove">[x]</a><a href="#" class="edit">edit</a></div><div class="edit"><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']">slide number: '+ index +'</textarea></div></li>';};
-  function newSlider(s) { return '<li><a href="/sliders/'+s.id+'/edit" class="edit">'+s.name+'</a> => <b>[#slider:'+s.id+']</b>  <a href="/sliders/'+s.id+'" class="delete" rel="sliders">[delete]</a></li>'};
-  
+  function newSlider(s) { return '<option value="/sliders/'+s.id+'/edit">'+s.name+' => <b>[#slider:'+s.id+']</b></option>'};
+
+// update sliders list.
+  function updateSliders(add){
+    $.getJSON('/pages/'+$('#main').attr('rel')+'/sliders.json', function(rsp){
+      var links = '<option value="0">Select a Slideshow</option>';
+      $.each(rsp, function(){
+        links += newSlider(this.slider);
+      });
+      $('select.widget-list').html(links);
+      if(add){
+        $("select.widget-list option:selected").removeAttr("selected");
+        $("select.widget-list option:last").attr("selected", "selected");
+      }
+    })  
+  }             
   function loadInto(url, div, callback){
     $(div).html(loading);
     $.get(url, function(view){
@@ -90,8 +104,8 @@
             $('#holder').empty();
           }
           if($(e.target).attr('rel') == 'sliders'){
-            $(e.target).parent('li').remove();
             $('div#widget-wrapper').empty();
+            updateSliders();
           }
         }
       })
@@ -146,14 +160,7 @@
             loadInto('/sliders/'+ rsp.created.id +'/edit', 'div#widget-wrapper', function(){
                $('ul#widget-tabs li a:first').click();
             });
-            // update sliders list.
-            $.getJSON('/pages/'+$('#main').attr('rel')+'/sliders.json', function(rsp){
-              var links = '';
-              $.each(rsp, function(){
-                links += newSlider(this.slider);
-              });
-              $('ul.widget-list').html(links);
-            })
+            updateSliders(true);
           }  
         }
 
@@ -162,7 +169,6 @@
       }
     });
   });
-
   
   // facebox reveal callback  
   $(document).bind('reveal.facebox', function(){
