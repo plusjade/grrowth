@@ -146,7 +146,7 @@
           if(rsp.created.resource == 'pages'){
             $.facebox.close();
             loadInto('/pages/'+ rsp.created.id +'/edit', '#holder', function(){
-              $('#page-tabs li a:first').click();
+              $(document).trigger('page.init');
             })         
           }  
           if(rsp.created.resource == 'sliders'){
