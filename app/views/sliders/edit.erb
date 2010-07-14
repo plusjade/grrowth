@@ -4,18 +4,22 @@
   <input name="_method" type="hidden" value="put" />
   <table class="page-head">
     <tr>
-      <td style="width:250px;">
-        <%= f.label :name %> <span class="star_req">*</span>
-        <%= f.text_field :name,  {:style => 'width:150px', :rel => 'text_req' } %>
+      <td style="width:130px;">
+        <label>Install:</label>
+        <input type="text" value="[#slider:<%=@slider.id%>]" style="width:80px;" READONLY/>
       </td>
       <td style="width:150px;">
+        <%= f.label :name %> <span class="star_req">*</span>
+        <%= f.text_field :name,  {:style => 'width:150px', :rel => 'text_req', :style => 'width:120px' } %>
+      </td>
+      <td style="width:130px;">
         <%= f.label :width %> <span class="star_req">*</span>
-        <%= f.text_field :width, {:style => 'width:50px', :rel => 'text_req' } %>px
+        <%= f.text_field :width, {:style => 'width:30px', :rel => 'text_req' } %>px
       </td>
       
-      <td style="width:150px;">
+      <td style="width:130px;">
         <%= f.label :height %> <span class="star_req">*</span>
-        <%= f.text_field :height,  {:style => 'width:50px', :rel => 'text_req' } %>px
+        <%= f.text_field :height,  {:style => 'width:30px', :rel => 'text_req' } %>px
       </td>
       
       <td class="buttons" style="width:60px;">

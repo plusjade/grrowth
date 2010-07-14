@@ -63,7 +63,7 @@
             <option value="0">Select a Slideshow</option>
           <% @page.sliders.each do |slider| %>
             <option value="<%=edit_slider_path(slider)%>">
-              <%= slider.name %> => <b>[#slider:<%=slider.id%>]</b>
+              <%= slider.name %> [#slider:<%=slider.id%>]
             </option>
           <% end %>
           </select>
