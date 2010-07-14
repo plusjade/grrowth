@@ -28,7 +28,10 @@ class SlidersController < ApplicationController
       :conditions => { :user_id => current_user.id }
     )
     @slider.slides = ActiveSupport::JSON.decode(@slider.slides)
-    @slider.slides = [] unless @slider.slides.is_a?(Array)  
+    @slider.slides = [] unless @slider.slides.is_a?(Array)
+    
+    @to_facebook = true;
+    @html = render_to_string(:template => "sliders/show")
   end
    
     

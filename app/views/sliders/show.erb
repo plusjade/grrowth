@@ -1,25 +1,28 @@
 
 <style type="text/css" id="slide-widget">
+#slideshow-wrapper{width:<%= @slider.width %>px;}
 #gallery-wrapper, #gallery, #gallery div.each-slide {width:<%= @slider.width %>px; height:<%= @slider.height %>px !important;}
 #gallery-wrapper{overflow:hidden !important;}
 #gallery{position: relative; left: 0px; overflow:hidden !important;}
 #gallery div.each-slide {float:left !important; }
 <%= @slider.css.gsub("\n", '') %>
 </style>
-<div id="gallery-wrapper">
-  <div id="gallery" onclick="return false;" title="1">
-    <% @slider.slides.each_with_index do |content, index| %>
-      <div id="slide-<%= index+1 %>" class="each-slide"><span><%= content %></span></div>
-    <% end %>
-  </div>
-</div>
 
-<div id="buttons">
-  <a href="#" id="back" onclick="apoa.scroll('back'); return false;">&lt;</a> 
-  <a href="#" id="next" onclick="apoa.scroll('next'); return false;">&gt;</a> 
-</div>
-<div style="margin:auto; text-align:center;">
-  <a href="#" onclick="apoa.reset(); return false;">Reset</a>
+<div id="slideshow-wrapper">
+  <div id="gallery-wrapper">
+    <div id="gallery" onclick="return false;" title="1">
+      <% @slider.slides.each_with_index do |content, index| %>
+        <div id="slide-<%= index+1 %>" class="each-slide"><span class="slide-container"><%= content %></span></div>
+      <% end %>
+    </div>
+  </div>
+  <div id="buttons">
+    <a href="#" id="back-link" onclick="apoa.scroll('back'); return false;">&lt;</a> 
+    <a href="#" id="next-link" onclick="apoa.scroll('next'); return false;">&gt;</a> 
+  </div>
+  <div id="reset">
+    <a href="#" id="reset-link" onclick="apoa.reset(); return false;">Reset</a>
+  </div>
 </div>
 
 <% if @to_facebook %>

@@ -29,15 +29,20 @@
   </table>
 
   <ul id="widget-tabs">
-    <li><a href="<%= slider_path(@slider)%>" rel="tab-widget-view" id="loadachu">View Slideshow</a></li>
-    <li><a href="#slides" rel="tab-widget-slides">Slides</a></li>
-    <li><a href="#css" rel="tab-widget-css">CSS</a></li>
+    <li title="View sample slideshow output"><a href="<%= slider_path(@slider)%>" rel="tab-widget-view" id="loadachu">View Slideshow</a></li>
+    <li title="The Basic HTML stucture of your slideshow (READONLY)"><a href="#html" rel="tab-widget-html">Study HTML</a></li>
+    <li title="Create and edit slides here"><a href="#slides" rel="tab-widget-slides">Slides</a></li>
+    <li title="Edit CSS here"><a href="#css" rel="tab-widget-css">CSS</a></li>
   </ul> 
 
   <div id="tab-widget-view" class="widget-tabs">
     This is the view
   </div>
-        
+
+  <div id="tab-widget-html" class="widget-tabs">
+    <textarea id="sample-html"><%=h @html %></textarea>
+  </div>
+          
   <div id="tab-widget-slides" class="widget-tabs">
     <a href="#" id="new-slide" style="clear:both;">New Slide</a>
     <ul id="slides-list">
@@ -67,5 +72,32 @@
 <script type="text/javascript">
 $(function(){
   $("ul#slides-list").sortable({axis: 'y' });
+  
+  var sampleHtml = CodeMirror.fromTextArea('sample-html', {
+    readOnly: true,
+    width: "820px",
+    height: "700px",
+    parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "parsehtmlmixed.js"],
+    stylesheet: ["/stylesheets/codemirror/xmlcolors.css?232331sdf", "/stylesheets/codemirror/jscolors.css?12312"],
+    path: "/javascripts/codemirror/",
+    lineNumbers: true,
+    textWrapping: false,
+
+  });
+
+  var sliderCss = CodeMirror.fromTextArea('slider_css', {
+    width: "820px",
+    height: "700px",
+    parserfile: "parsecss.js",
+    stylesheet: "/stylesheets/codemirror/csscolors.css?3453",
+    path: "/javascripts/codemirror/",
+    continuousScanning: 500,
+    lineNumbers: true,
+    saveFunction: function(){
+      $('textarea#slider_css').val(sliderCss.getCode());
+      $('form.edit_slider').submit();
+    }
+  });
+     
 })
 </script>
