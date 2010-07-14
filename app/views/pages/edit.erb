@@ -59,7 +59,7 @@
         </div>
         <div style="padding:5px;background:#ffffcc;margin-bottom:10px; overflow:hidden;">
           <h3 style="float:left; margin-right:10px;">My Slideshows</h3>
-          <select class="widget-list" style="float:left; margin-right:10px;">
+          <select id="sliders-list" class="widget-list" style="float:left; margin-right:10px;">
             <option value="0">Select a Slideshow</option>
           <% @page.sliders.each do |slider| %>
             <option value="<%=edit_slider_path(slider)%>">
@@ -74,64 +74,4 @@
       
     </div>
   </div>
-
-<script type="text/javascript">
-$(function(){
-
-  $('select.widget-list').change(function(){
-    var url = $('option:selected', $(this)).val();
-    if(url == 0) return;
-    $('div#widget-wrapper').html(loading);
-    $.get(url, function(view){
-      $('div#widget-wrapper').html(view);
-      $('ul#widget-tabs li a:first').click();
-      $(document).trigger('ajaxify.forms');
-    })    
-    return false;
-  });
-  
-  var editor = CodeMirror.fromTextArea('page_body_helper', {
-    width: "820px",
-    height: "700px",
-    parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "parsehtmlmixed.js"],
-    stylesheet: ["/stylesheets/codemirror/xmlcolors.css?232331sdf", "/stylesheets/codemirror/jscolors.css?12312"],
-    path: "/javascripts/codemirror/",
-    continuousScanning: 500,
-    lineNumbers: true,
-    textWrapping: false,
-    saveFunction: function(){
-      $('textarea#page_body').val(editor.getCode());
-      $('form.edit_page').submit();
-    },
-    initCallback: function(editor){
-      editor.setCode($('textarea#page_body').val());    
-    }    
-  });
-
-  var cssEditor = CodeMirror.fromTextArea('page_css_helper', {
-    width: "820px",
-    height: "700px",
-    parserfile: "parsecss.js",
-    stylesheet: "/stylesheets/codemirror/csscolors.css?3453",
-    path: "/javascripts/codemirror/",
-    continuousScanning: 500,
-    lineNumbers: true,
-    saveFunction: function(){
-      $('textarea#page_css').val(cssEditor.getCode());
-      $('form.edit_page').submit();
-    },
-    initCallback: function(editor){
-      editor.setCode($('textarea#page_css').val());
-    }
-  });
-
-  
- // overload save button for saving a page
-  $('button#save-page').click(function(){
-    $('textarea#page_body').val(editor.getCode());
-    $('textarea#page_css').val(cssEditor.getCode());
-  });
-    
-})
-</script>
 
