@@ -188,6 +188,7 @@
       textWrapping: false,
       saveFunction: function(){
         $('#page_body').val(pageBody.getCode());
+        $('#page_css').val(pageCss.getCode());
         $('form.edit_page').submit();
       },
       initCallback: function(editor){
@@ -204,6 +205,7 @@
       continuousScanning: 500,
       lineNumbers: true,
       saveFunction: function(){
+        $('#page_body').val(pageBody.getCode());
         $('#page_css').val(pageCss.getCode());
         $('form.edit_page').submit();
       },
@@ -268,16 +270,17 @@
   // show the submit ajax loading graphic.
   $(document).bind('submitting', function(){
     $('div.responding.active').remove();
-    $('div.submitting').show();
+    $('#submitting').show();
   });
 
   // show the response (always json)
   $(document).bind('responding', function(e, rsp){
     var status = (undefined == rsp.status) ? 'bad' : rsp.status;
     var msg = (undefined == rsp.msg) ? 'There was a problem!' : rsp.msg;
-    $('div.submitting').hide();
+    $('#submitting').hide();
+    $('div.responding').hide();
     $('div.responding.active').remove();
-    $('div.responding').clone().addClass('active ' + status).html(msg).show().insertAfter('.responding');
+    $('div.responding').clone().addClass('active ' + status).html(msg).show().insertAfter('div.responding');
     setTimeout('$("div.responding.active").fadeOut(4000)', 1900);  
   }); 
 });
