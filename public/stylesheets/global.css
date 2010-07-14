@@ -4,8 +4,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 body{ background-color:#f1f2f3; color:#777777; font:12px 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, san-serif; line-height:23px;}
 pre { color:#777777; font:12px 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, san-serif; line-height:23px;}
 p {margin-bottom:10px;}
-#wrapper{ width:920px; margin:0 auto; order:1px solid red;}
-#header{text-align:center; height:50px;}
+#wrapper{ width:920px; margin:0 auto;}
+#header{text-align:center; height:20px;}
 
 #main{
   padding:20px;

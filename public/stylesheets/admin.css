@@ -89,22 +89,20 @@
 
 /* top fixed admin bar
   ------------------------------------------------------------ */
-table.top-bar{
-  position:fixed;
-  top:0;
-  width:960px;
+table#top-bar{
+  width:99%;
+  margin:auto;
   height:25px;
   background:#e9e9e9;
   border:1px solid #ccc;
   border-top:0;
-  z-index:99999999;
   border-collapse:collapse;
   -moz-border-radius-bottomleft:5px;
   -moz-border-radius-bottomright:5px;
   -webkit-border-bottom-left-radius:5px;
   -webkit-border-bottom-right-radius:5px;
 }
-table.top-bar td{
+table#top-bar td{
   height:20px;
   overflow:hidden;
 }
@@ -332,7 +330,7 @@ table.upload-report td.bad{background:lightpink;}
 
 /* ajax responses
  ---------------------------------------- */
-.submitting{
+#submitting{
   padding:3px 3px 0 170px;
   text-align:left;
   color:#222;
