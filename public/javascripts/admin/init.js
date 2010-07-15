@@ -85,7 +85,7 @@
         success: function(rsp){
           $(document).trigger('responding', rsp);
           if($(e.target).attr('rel') == 'pages'){
-            $(e.target).parent('li').remove();
+            $('#admin-links li a:last').click();
             $('#holder').empty();
           }
           if($(e.target).attr('rel') == 'sliders'){

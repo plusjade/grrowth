@@ -5,7 +5,6 @@
   <% @user.pages.each do |page| %>
     <li>
       <%= link_to page.name, edit_page_path(page), :class => 'edit' %>
-      <%= link_to '[delete]', page_path(page), :class => 'delete', :rel => 'pages' %>
     </li>
   <% end %>
   </ul>

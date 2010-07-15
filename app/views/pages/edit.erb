@@ -38,6 +38,9 @@
     <div id="content">
 
       <div id="tab-view" class="tab-content">
+        <div style="text-align:right">
+          <%= link_to '[Delete this page!]', page_path(@page), :class => 'delete', :rel => 'pages' %>
+        </div>
         <iframe id="page-iframe" src ="/deploy/preview/<%= @page.fb_sig_page_id %>" width="100%" height="800px">Iframe not Supported</iframe>
       </div>
         
