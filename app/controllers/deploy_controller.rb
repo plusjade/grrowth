@@ -7,10 +7,11 @@ class DeployController < ApplicationController
   
   # facebook pages call this page which always serves the cache.
   def index
-    render :text => 'Facebook credentials not sent.' and return if (params['fb_sig_page_id'].nil? and params[:id].nil?)
-    @id = (params[:id]) ? params[:id] : params['fb_sig_page_id']
-    @path = File.join('tmp/cache', "#{@id}.html")
+    render :nothing => true and return unless request.post?
+    render :text => 'Facebook credentials not sent.' and return if (params['fb_sig_api_key'].nil? || params['fb_sig_api_key'] != '89ace145ffac4fd47a206ca69ae82f3d' )    
     
+    @id = (params['fb_sig_page_id'].nil?) ? params['fb_sig_profile_id'] : params['fb_sig_page_id']
+    @path = File.join('tmp/cache', "#{@id}.html")
     render :text => render_cache
     return 
   end
