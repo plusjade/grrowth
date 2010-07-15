@@ -90,12 +90,14 @@
 /* top fixed admin bar
   ------------------------------------------------------------ */
 table#top-bar{
-  width:99%;
+  position:fixed;
+  width:920px;
   margin:auto;
   height:25px;
   background:#e9e9e9;
   border:1px solid #ccc;
   border-top:0;
+  z-index:999999;
   border-collapse:collapse;
   -moz-border-radius-bottomleft:5px;
   -moz-border-radius-bottomright:5px;

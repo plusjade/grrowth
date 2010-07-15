@@ -5,7 +5,7 @@ body{ background-color:#f1f2f3; color:#777777; font:12px 'Lucida Grande', 'Lucid
 pre { color:#777777; font:12px 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, san-serif; line-height:23px;}
 p {margin-bottom:10px;}
 #wrapper{ width:920px; margin:0 auto;}
-#header{text-align:center; height:20px;}
+#header{text-align:center; height:50px;}
 
 #main{
   padding:20px;
