@@ -6,8 +6,23 @@ class User < ActiveRecord::Base
   
   def add_samples
     @page = self.pages.build
-    @page.name = 'My First Page!'
-    @page.fb_sig_page_id = ActiveSupport::SecureRandom.hex(8)
+    @page.name = 'My First Page! (contains sample data)'
+    @page.save
+    
+    @slider         = @page.sliders.build
+    @slider.user_id = self.id
+    @slider.width   = 650
+    @slider.height  = 300
+    @slider.name    = 'My First Slideshow'
+    @slider.save
+    
+    # need the slider id.
+    @page.body = "
+<h1 id=\"hello\">My First Page Is Actually Not That Bad At All!</h1>
+[#slider:#{@slider.id}]
+<div id=\"happy-face\">=)</div>
+<div id=\"footer\">The end</div>    
+    "
     @page.css = '
 #hello{
   padding:5px;
@@ -30,22 +45,6 @@ class User < ActiveRecord::Base
   text-align:center;
 }    
     '
-    @page.save
-    
-    @slider         = @page.sliders.build
-    @slider.user_id = self.id
-    @slider.width   = 650
-    @slider.height  = 300
-    @slider.name    = 'My First Slideshow'
-    @slider.save
-    
-    # need the slider id.
-    @page.body = "
-<h1 id=\"hello\">My First Page Is Actually Not That Bad At All!</h1>
-[#slider:#{@slider.id}]
-<div id=\"happy-face\">=)</div>
-<div id=\"footer\">The end</div>    
-    "
     @page.save
   end
   

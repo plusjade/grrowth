@@ -5,9 +5,19 @@ class Page < ActiveRecord::Base
   validates_length_of :fb_sig_page_id, :minimum => 10
   validates_format_of :fb_sig_page_id, :with => /\A[a-zA-Z0-9]+\z/
   validates_uniqueness_of :fb_sig_page_id
-  after_save :renew_cache
+  
+  before_validation_on_create :generate_defaults
+  after_save   :renew_cache
   
 
+  def generate_defaults
+    self.preview_key    = ActiveSupport::SecureRandom.hex(8) 
+    self.fb_sig_page_id = ActiveSupport::SecureRandom.hex(8)    
+    self.body           = "<h1 id=\"sample\">#{self.name}</h1><div id=\"omit\">Created new page!<br/>(feel free to delete this)</div>"
+    self.css            = 'h1#sample {text-align:center; color:green;} #omit{text-align:center;}'
+  end
+  
+  
   def renew_cache
     cache_file = File.join('tmp/cache', "#{self.fb_sig_page_id}.html")
     File.delete(cache_file) if File.exist?(cache_file)

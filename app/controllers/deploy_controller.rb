@@ -19,7 +19,7 @@ class DeployController < ApplicationController
   # always build the page preview for admin mode quick view
   def preview
     render :text => 'Facebook credentials not sent.' and return if params[:id].nil?
-    @page = Page.first(:conditions => { :fb_sig_page_id => params[:id] })
+    @page = Page.first(:conditions => { :preview_key => params[:id] })
     render :text => 'Page not found' and return if @page.nil?
 
     # quick and dirty javascript filtering in CSS =(

@@ -16,7 +16,7 @@
         <%= f.check_box(:publish) %> (yes)
       </td>
       <td class="buttons" style="width:140px;">
-        <%= link_to 'Facebook Preview', 'http://apps.facebook.com/aplanofattack/deploy/preview/' + @page.fb_sig_page_id, {:target => '_blank', :class => 'positive', :style => 'float:right; position:relative;'} %>
+        <%= link_to 'Facebook Preview', 'http://apps.facebook.com/aplanofattack/deploy/preview/' + @page.preview_key, {:target => '_blank', :class => 'positive', :style => 'float:right; position:relative;'} %>
       </td>
       <td class="buttons" style="width:120px;">
         <button id="save-page" type="submit" class="positive" style="float:right">Save Page</button>
@@ -41,7 +41,7 @@
         <div style="text-align:right">
           <%= link_to '[Delete this page!]', page_path(@page), :class => 'delete', :rel => 'pages' %>
         </div>
-        <iframe id="page-iframe" src ="/deploy/preview/<%= @page.fb_sig_page_id %>" width="100%" height="800px">Iframe not Supported</iframe>
+        <iframe id="page-iframe" src ="/deploy/preview/<%= @page.preview_key %>" width="100%" height="800px">Iframe not Supported</iframe>
       </div>
         
       <div id="tab-body" class="tab-content">

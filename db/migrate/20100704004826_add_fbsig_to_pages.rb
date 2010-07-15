@@ -1,7 +1,7 @@
 class AddFbsigToPages < ActiveRecord::Migration
   def self.up
     add_column :pages, :fb_sig_page_id, :string
-    add_index :pages, :fb_sig_page_id
+    add_index :pages, :fb_sig_page_id, :unique => true
   end
 
   def self.down
