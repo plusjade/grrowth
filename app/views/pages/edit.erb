@@ -28,7 +28,7 @@
 <% end %>
       
   <ul id="page-tabs">
-    <li title="View the latest rendered output of your page"><a href="deploy/preview/<%= @page.fb_sig_page_id %>" rel="tab-view" id="load">View Page</a></li>
+    <li title="View the latest rendered output of your page"><a href="#" rel="tab-view" id="reload-iframe">View Page</a></li>
     <li title="Edit the contents of your page"><a href="#body" rel="tab-body">Body</a></li>
     <li title="Edit the CSS of your main page"><a href="#css" rel="tab-css">CSS</a></li>
     <li title="Configure widgets to add to your page"><a href="#widget" rel="tab-widget">Widgets</a></li>
@@ -38,13 +38,13 @@
     <div id="content">
 
       <div id="tab-view" class="tab-content">
-        This is the view
+        <iframe id="page-iframe" src ="/deploy/preview/<%= @page.fb_sig_page_id %>" width="100%" height="800px">Iframe not Supported</iframe>
       </div>
         
       <div id="tab-body" class="tab-content">
         Make sure your code is valid XHTML. Facebook is pretty strict.
         Be sure to use the "Facebook Preview" button to ensure your code works in Facebook.
-        <br/>The "Widgets" tab is where you can create advanced interactions.
+        <br/>Javascript is not allowed and will be stripped out. Use the "Widgets" tab to create advanced interactions using javascript.
         <fieldset style="clear:both">
           <textarea id="page_body_helper"></textarea>
         </fieldset>
@@ -60,7 +60,7 @@
 
       <div id="tab-widget" class="tab-content">
         <div style="padding:3px;background:#ffff99;font-weight:bold; color:#000; text-align:center">
-          Add a widget to your page by pasting the widget's code into your page body. (ex code: [#slider:1])
+          Add a widget to your page by pasting the widget's <b>TOKEN</b> into your page body. (ex token: [#slider:1])
         </div>
         <div style="padding:5px;background:#ffffcc;margin-bottom:10px; overflow:hidden;">
           <h3 style="float:left; margin-right:10px;">My Slideshows</h3>

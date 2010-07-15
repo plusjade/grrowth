@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
-      redirect_back_or_default admin_url
+      redirect_to "/admin"
     else
       render :action => :new
     end
@@ -18,6 +18,6 @@ class UserSessionsController < ApplicationController
   
   def destroy
     current_user_session.destroy
-    redirect_back_or_default new_user_session_url
+    redirect_to new_user_session_url
   end
 end

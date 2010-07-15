@@ -16,9 +16,14 @@ class SlidersController < ApplicationController
       params[:id],
       :conditions => { :user_id => current_user.id }
     )
+    # quick and dirty javascript filtering =(
+    render :text => 'Please omit open/close style tags in your CSS' and return unless /(<\/style)/i.match(@slider.css).nil?
+    render :text => 'Please remove javascript from your CSS.' and return unless /(<script)/i.match(@slider.css).nil?
+       
     @slider.slides = ActiveSupport::JSON.decode(@slider.slides)
     @slider.slides = [] unless @slider.slides.is_a?(Array)  
     @to_facebook = false;
+    @standalone = true;
   end
   
   

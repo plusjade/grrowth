@@ -54,14 +54,9 @@
       $(e.target).addClass('active');
       var $tab = $('#'+ $(e.target).attr('rel'));
       $tab.show();
-      if(e.target.id == 'load'){
-        $tab.html(loading);
-        $.get(e.target.href, function(view){
-          $tab.html(view);
-        })      
+      if(e.target.id == 'reload-iframe'){
+        document.getElementById('page-iframe').contentWindow.location.reload();     
       }
-      // this is so javascript in the preview gets removed.
-      $('#tab-view').empty();
       return false;
     },
     
@@ -70,13 +65,9 @@
       $('div.widget-tabs').hide();
       $('#widget-tabs li a').removeClass('active');
       $(e.target).addClass('active');
-      var $tab = $('#'+ $(e.target).attr('rel'));
-      $tab.show();
-      if(e.target.id == 'loadachu'){
-        $tab.html(loading);
-        $.get(e.target.href, function(view){
-          $tab.html(view);
-        })      
+      $('#'+ $(e.target).attr('rel')).show();
+      if(e.target.id == 'reload-widget-iframe'){
+        document.getElementById('widget-iframe').contentWindow.location.reload();
       }
       return false;
     },
