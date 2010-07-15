@@ -27,7 +27,7 @@
       </td>
                
       <td class="buttons" style="width:120px;">
-        <button type="submit" class="positive" id="save-slider">Save Changes</button>
+        <button type="submit" class="positive" id="save-slider">Save Slideshow</button>
       </td>
     </tr>
   </table>
@@ -50,7 +50,7 @@
     <div class="notes">
       Create and delete slides, then drag slides to arrange their order.
       Edit slide content with the HTML editor.
-      <br/>Changes are only saved when hitting <b>CTRL + S</b> while in a code editor or <b>"Save Changes"</b>.
+      <br/>Changes are only saved when hitting <b>CTRL + S</b> while in a code editor or <b>"Save Slideshow"</b>.
     </div>
     
     <div style="float:right;width:550px;">
@@ -60,10 +60,9 @@
       <a href="#" id="new-slide" style="clear:both;">New Slide</a>
       <ul id="slides-list">
         <% @slider.slides.each_with_index do |content, index| %>
-          <li>
-            <span>Slide <%= index %></span>
+          <li title="Click to edit or drag to reorder">
+            Slide <%= index %>
             <a href="#" class="remove">[x]</a>
-            <a href="#" class="edit">edit</a>
             <textarea id="slider_slides_<%= index %>" name="slider_slides[<%= index %>]" style="display:none"><%= content %></textarea>
           </li>
         <% end %>

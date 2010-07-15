@@ -1,6 +1,6 @@
 ;$(document).ready(function(){
   var loading = '<div class="loading">Loading...</div>';
-  function newSlide(index){ return '<li><span>Slide '+ index +' </span><a href="#" class="remove">[x]</a><a href="#" class="edit">edit</a><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']" style="display:none">slide number: '+ index +'</textarea></li>';};
+  function newSlide(index){ return '<li>Slide '+ index +' <a href="#" class="remove">[x]</a><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']" style="display:none">slide number: '+ index +'</textarea></li>';};
   function newSlider(s) { return '<option value="/sliders/'+s.id+'/edit">'+s.name+' => <b>[#slider:'+s.id+']</b></option>'};
 
 // update sliders list.
@@ -244,16 +244,16 @@
         $('form.edit_slider').submit();
       },
       initCallback: function(editor){
-        $('li:first a.edit', $slides).click();
+        $('li:first', $slides).click();
       }    
     });
 
     $slides.click($.delegate({
-      'a.edit' :function(e){
+      'li' :function(e){
         // save the code to current active container.
         $('textarea', $('li.active', $slides)).val(slidesHtml.getCode());
         $('li', $slides).removeClass('active');
-        var $node = $(e.target).parent('li').addClass('active');
+        var $node = $(e.target).addClass('active');
         slidesHtml.setCode( $('textarea', $node).val() );
         return false;
       },
@@ -261,7 +261,7 @@
         var $node = $(e.target).parent('li');
         $node.remove();
         if($node.hasClass('active')){
-          $('li:first a.edit', $slides).click();  
+          $('li:first', $slides).click();  
         }
         return false;
       }      

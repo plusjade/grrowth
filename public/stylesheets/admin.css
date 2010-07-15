@@ -385,17 +385,12 @@ ul#slides-list li {
   border:1px solid #7cc82f;
   background:#cbf79e;
 }
-ul#slides-list li.active{ background:#fbcc29; border:1px solid orange;}
+ul#slides-list li:hover { background:#ffff99; border:1px solid orange;}
+ul#slides-list li.active { background:#fbcc29; border:1px solid orange;}
 ul#slides-list li a {
   display:block;
-  width:60px;
   float:right;
   text-align:right;
-}
-ul#slides-list li span {
-  display:block;
-  float:left;
-  width:100px;
 }
 ul#slides-list li textarea {
   display:none;

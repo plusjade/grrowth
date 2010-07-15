@@ -19,7 +19,7 @@
         <%= link_to 'Facebook Preview', 'http://apps.facebook.com/aplanofattack/deploy/preview/' + @page.fb_sig_page_id, {:target => '_blank', :class => 'positive', :style => 'float:right; position:relative;'} %>
       </td>
       <td class="buttons" style="width:120px;">
-        <button id="save-page" type="submit" class="positive" style="float:right">Save Changes</button>
+        <button id="save-page" type="submit" class="positive" style="float:right">Save Page</button>
       </td>
     </tr>
   </table>
@@ -42,27 +42,24 @@
       </div>
         
       <div id="tab-body" class="tab-content">
-        Make sure your code is valid XHTML. Facebook is pretty strict.
-        Be sure to use the "Facebook Preview" button to ensure your code works in Facebook.
-        <br/>Javascript is not allowed and will be stripped out. Use the "Widgets" tab to create advanced interactions using javascript.
-        <fieldset style="clear:both">
-          <textarea id="page_body_helper"></textarea>
-        </fieldset>
+        <div class="notes">
+          Make sure your code is valid XHTML. Facebook is pretty strict.
+          Be sure to use the "Facebook Preview" button to ensure your code works in Facebook.
+          <br/>Javascript is not allowed and will be stripped out. Use the "Widgets" tab to create advanced interactions using javascript.
+        </div>
+        <textarea id="page_body_helper"></textarea>
       </div>
      
       <div id="tab-css" class="tab-content">
-        Add custom CSS here. Note that much of CSS3 is not allowed in facebook but will work in your preview.
-        If your code is not working, the CSS is probably invalid.
-        <fieldset style="clear:both">
-          <textarea id="page_css_helper"></textarea>
-        </fieldset>
+        <div class="notes">
+          Add custom CSS here. Note that much of CSS3 is not allowed in facebook but will work in your preview.
+          If your code is not working, the CSS is probably invalid.
+        </div>
+        <textarea id="page_css_helper"></textarea>
       </div>
 
       <div id="tab-widget" class="tab-content">
-        <div style="padding:3px;background:#ffff99;font-weight:bold; color:#000; text-align:center">
-          Add a widget to your page by pasting the widget's <b>TOKEN</b> into your page body. (ex token: [#slider:1])
-        </div>
-        <div style="padding:5px;background:#ffffcc;margin-bottom:10px; overflow:hidden;">
+        <div style="padding:5px;background:#ffffcc;overflow:hidden;">
           <h3 style="float:left; margin-right:10px;">My Slideshows</h3>
           <select id="sliders-list" class="widget-list" style="float:left; margin-right:10px;">
             <option value="0">Select a Slideshow</option>
@@ -74,6 +71,9 @@
           </select>
           <%= link_to 'New Slideshow', new_page_slider_path(@page), :rel => 'facebox', :style => 'float:left' %>
         </div>
+        <div style="margin-bottom:10px; padding:3px;background:#ddf9bc;font-weight:bold; color:#000; text-align:center">
+          Add a widget to your page by pasting the widget's <b>TOKEN</b> into your page body. An example TOKEN: [#slider:1]
+        </div>        
         <div id="widget-wrapper"></div>
       </div>
       
