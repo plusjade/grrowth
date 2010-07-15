@@ -1,6 +1,6 @@
 ;$(document).ready(function(){
   var loading = '<div class="loading">Loading...</div>';
-  function newSlide(index){ return '<li><div class="info"><span>Slide '+ index +' </span><a href="#" class="remove">[x]</a><a href="#" class="edit">edit</a></div><div class="edit"><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']">slide number: '+ index +'</textarea></div></li>';};
+  function newSlide(index){ return '<li><span>Slide '+ index +' </span><a href="#" class="remove">[x]</a><a href="#" class="edit">edit</a><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']" style="display:none">slide number: '+ index +'</textarea></li>';};
   function newSlider(s) { return '<option value="/sliders/'+s.id+'/edit">'+s.name+' => <b>[#slider:'+s.id+']</b></option>'};
 
 // update sliders list.
@@ -99,25 +99,11 @@
 /*
   edit sliders environment
 */ 
-   // overload save button to change textarea insertion order.
-    '#save-slider' : function(e){
-      $.each($('#slides-list li'), function(key, node){
-        $('textarea', $(this)).attr('name', 'slider_slides['+ key +']');
-      })
-    },
     '#new-slide' : function(e){
       var index = $('#slides-list li').length;
       $('#slides-list').append(newSlide(index));
       return false;
-    },
-    '#slides-list a.edit' :function(e){
-      $(e.target).parent().next('div').toggle();
-      return false;
-    },  
-    '#slides-list a.remove' :function(e){
-      $(e.target).parent().parent('li').remove();
-      return false;
-    }   
+    }
   }));  
 
 /* bindings 
@@ -215,9 +201,11 @@
 
  // initialize the widget edit environment
   $(document).bind('widget.init', function(){
+    var $slides = $("#slides-list");
     $('#widget-tabs li a:first').click();
-    $("#slides-list").sortable({axis: 'y' });
-    
+    $slides.sortable({axis: 'y' });
+
+    // slideshow html output (READONLY)
     var sampleHtml = CodeMirror.fromTextArea('sample-html', {
       readOnly: true,
       width: "820px",
@@ -229,7 +217,7 @@
       textWrapping: false,
 
     });
-
+    // slideshow CSS
     var sliderCss = CodeMirror.fromTextArea('slider_css', {
       width: "820px",
       height: "700px",
@@ -239,11 +227,55 @@
       continuousScanning: 500,
       lineNumbers: true,
       saveFunction: function(){
-        $('#slider_css').val(sliderCss.getCode());
         $('form.edit_slider').submit();
       }
     })
-    
+    // slideshow HTML editor for each slide
+    var slidesHtml = CodeMirror.fromTextArea('slide-editor', {
+      width: "500px",
+      height: "400px",
+      parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "parsehtmlmixed.js"],
+      stylesheet: ["/stylesheets/codemirror/xmlcolors.css?232331sdf", "/stylesheets/codemirror/jscolors.css?12312"],
+      path: "/javascripts/codemirror/",
+      continuousScanning: 500,
+      lineNumbers: true,
+      textWrapping: false,
+      saveFunction: function(){
+        $('form.edit_slider').submit();
+      },
+      initCallback: function(editor){
+        $('li:first a.edit', $slides).click();
+      }    
+    });
+
+    $slides.click($.delegate({
+      'a.edit' :function(e){
+        // save the code to current active container.
+        $('textarea', $('li.active', $slides)).val(slidesHtml.getCode());
+        $('li', $slides).removeClass('active');
+        var $node = $(e.target).parent('li').addClass('active');
+        slidesHtml.setCode( $('textarea', $node).val() );
+        return false;
+      },
+      'a.remove' :function(e){
+        var $node = $(e.target).parent('li');
+        $node.remove();
+        if($node.hasClass('active')){
+          $('li:first a.edit', $slides).click();  
+        }
+        return false;
+      }      
+    }));
+ 
+   // overload save slideshow: save current code in editor and update slide insertion order.
+    $('form.edit_slider').submit(function(){
+      $('textarea', $('li.active', $slides)).val(slidesHtml.getCode());
+      $.each($('li', $slides), function(key, node){
+        $('textarea', $(this)).attr('name', 'slider_slides['+ key +']');
+      })
+      $('#slider_css').val(sliderCss.getCode());   
+    })
+       
     $(document).trigger('ajaxify.forms');
   });
   

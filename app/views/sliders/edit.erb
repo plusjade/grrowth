@@ -40,45 +40,51 @@
   </ul> 
 
   <div id="tab-widget-view" class="widget-tabs">
+    <div class="notes">
+      View the up-to-date rendered slideshow. Edit slides via the <b>"Slides"</b> tab.
+    </div>
     <iframe id="widget-iframe" src ="<%= slider_path(@slider)%>" width="100%" height="800px">Iframe not Supported</iframe>
   </div>
 
   <div id="tab-widget-slides" class="widget-tabs">
-    <div>
-      Slides can contain arbitrary HTML. Use absolute paths for images.
-      You can create and delete slides, then drag slides to arrange their order.
-      Note you must click "Save Changes" to save created, deleted, and edited slides.
+    <div class="notes">
+      Create and delete slides, then drag slides to arrange their order.
+      Edit slide content with the HTML editor.
+      <br/>Changes are only saved when hitting <b>CTRL + S</b> while in a code editor or <b>"Save Changes"</b>.
     </div>
-    <a href="#" id="new-slide" style="clear:both;">New Slide</a>
-    <ul id="slides-list">
-      <% @slider.slides.each_with_index do |content, index| %>
-        <li>
-          <div class="info">
-            <span>Slide #<%= index %></span>
+    
+    <div style="float:right;width:550px;">
+      <textarea id="slide-editor" style="width:100%;height:300px"></textarea>
+    </div style="float:left;width:350px;">
+    <div>
+      <a href="#" id="new-slide" style="clear:both;">New Slide</a>
+      <ul id="slides-list">
+        <% @slider.slides.each_with_index do |content, index| %>
+          <li>
+            <span>Slide <%= index %></span>
             <a href="#" class="remove">[x]</a>
             <a href="#" class="edit">edit</a>
-          </div>
-          <div class="edit">
-            <textarea id="slider_slides_<%= index %>" name="slider_slides[<%= index %>]"><%= content %></textarea>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+            <textarea id="slider_slides_<%= index %>" name="slider_slides[<%= index %>]" style="display:none"><%= content %></textarea>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
     
   <div id="tab-widget-css" class="widget-tabs">
-    Add custom CSS styling to your slideshow. Study the HTML output tab
-    to find ids, classes and tags to style. 
-    <br/>Note that much of CSS3 is not allowed in facebook but will work in your preview.
-    If your code is not working, the CSS is probably invalid.
-    <fieldset>
-      <%= f.text_area :css, :style => 'width:99%;height:300px;' %>
-    </fieldset>
+    <div class="notes">
+      Add custom CSS styling to your slideshow. Study the HTML output tab to find ids, classes and tags to style. 
+      <br/>Note that much of CSS3 is not allowed in facebook but will work in your preview.
+      If your code is not working, the CSS is probably invalid.
+    </div>  
+    <%= f.text_area :css, :style => 'width:99%;height:300px;' %>
   </div>
 
   <div id="tab-widget-html" class="widget-tabs">
-    Rendered HTML output for your slideshow. Allows you to see how the slideshow is structured.
-    Note this gets updated only once on initial slideshow load.
+    <div class="notes">
+      Rendered HTML output for your slideshow. Allows you to see how the slideshow is structured.
+      Note this gets updated only once on initial slideshow load.
+    </div>
     <textarea id="sample-html"><%= @html %></textarea>
   </div>  
 <% end %> 

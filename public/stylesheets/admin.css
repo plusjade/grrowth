@@ -370,28 +370,26 @@ div.responding.active.warn {
 fieldset.info input {width:200px;}
 
 ul#slides-list {
-  margin:auto;
   list-style:none;
   padding:0;
-  width:700px; 
+  width:300px; 
 }
 ul#slides-list li {
   display:block;
+  width:300px;
   margin-bottom:5px;
-  cursor:move;
-}
-ul#slides-list li div.info {
-  width:700px;
-  overflow:hidden;
-  border:1px dashed #ccc;
-  background:#ffffcc;
   padding:4px;
+  cursor:move;
+  color:#111;
+  overflow:hidden;
+  border:1px solid #7cc82f;
+  background:#cbf79e;
 }
-ul#slides-list li div.info a {
+ul#slides-list li.active{ background:#fbcc29; border:1px solid orange;}
+ul#slides-list li a {
   display:block;
   width:60px;
   float:right;
-  background:#fff;
   text-align:right;
 }
 ul#slides-list li span {
@@ -399,11 +397,8 @@ ul#slides-list li span {
   float:left;
   width:100px;
 }
-ul#slides-list li div.edit { display:none;}
-ul#slides-list div textarea {
-  width:580px;
-  height:300px;
-  margin:auto;
+ul#slides-list li textarea {
+  display:none;
 }  
 
 
@@ -421,4 +416,6 @@ table.page-head label {font-weight:bold;}
   font-family: monospace;
   padding-top: .4em;
 }
-   
+
+.notes {margin-bottom:5px; text-align:center;}
+.notes b {color:#000}
