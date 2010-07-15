@@ -28,7 +28,11 @@ class PagesController < ApplicationController
   #POST
   def create
     @user = current_user
-    @page = @user.pages.build(params[:page])    
+    @page = @user.pages.build(params[:page])
+    @page.fb_sig_page_id = ActiveSupport::SecureRandom.hex(8)    
+    @page.body = "<h1 id=\"sample\">#{@page.name}</h1><div id=\"omit\">Created new page!<br/>(feel free to delete this)</div>"
+    @page.css = 'h1#sample {text-align:center; color:green;} #omit{text-align:center;}'
+    
     if @page.save
       render :json =>
       {

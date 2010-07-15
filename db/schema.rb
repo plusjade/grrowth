@@ -12,14 +12,14 @@
 ActiveRecord::Schema.define(:version => 20100713121512) do
 
   create_table "pages", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.text     "body"
+    t.integer  "user_id",        :null => false  
+    t.string   "name",           :null => false
+    t.text     "body",           :null => false 
+    t.string   "fb_sig_page_id", :null => false
+    t.text     "css",            :null => false
+    t.boolean  "publish",        :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fb_sig_page_id"
-    t.text     "css"
-    t.boolean  "publish",        :default => false
   end
 
   add_index "pages", ["fb_sig_page_id"], :name => "fb_sig_page_id"
