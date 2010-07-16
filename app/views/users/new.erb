@@ -1,6 +1,6 @@
 
-<div class="right-half">
-  <h2>Get In Good With The Beta!</h2>
+<h1 class="cufon" style="text-align:center">Get In Good With The Beta!</h1>
+<div id="signup">
   <% form_for @user, :url => account_path do |f| %>
     <%= f.error_messages %>
     <%= render :partial => "form", :object => f %>
@@ -10,5 +10,4 @@
     </fieldset>
   <% end %>
 </div>
-
 

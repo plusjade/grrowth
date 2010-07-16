@@ -1,14 +1,26 @@
-<h1>Login</h1>
 
-<% form_for @user_session, :url => user_session_path do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :email %><br />
-  <%= f.text_field :email %><br />
-  <br />
-  <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
-  <br />
-  <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
-  <br />
-  <%= f.submit "Login" %>
-<% end %>
+<h1 class="cufon" style="text-align:center">Login</h1>
+
+<div id="login">
+  <% form_for @user_session, :url => user_session_path do |f| %>
+    <%= f.error_messages %>
+    <fieldset>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </fieldset>
+    
+    <fieldset>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </fieldset>
+    
+    <fieldset>
+    <%= f.label 'Remember me?' %>
+    <%= f.check_box :remember_me, :style => 'width:30px; display:inline;' %> (yes)
+    </fieldset>
+    
+    <fieldset>
+      <%= f.submit "Login" %>
+    </fieldset>
+  <% end %>
+</div>
