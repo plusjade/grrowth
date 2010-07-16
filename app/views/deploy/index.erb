@@ -5,16 +5,30 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Preview</title>
   <%= javascript_include_tag "jquery-1.4.2.min"%>
+  <style type="text/css">
+    /* default fb style */
+    body{ font-family: "lucida grande", tahoma, verdana, arial, sans-serif;  }
+    a {color:#3b5998}
+     p {
+      font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+      font-size:11px;
+      color: #333333; /* don't use just black, it won't look good */
+     }
+  </style>
 </head>
 <body>
+  <small style="color:#555;">*The dotted line is the max width of the Facebook tab. Only shows in preview mode.*</small>
+  <div style="width: 760px; border:1px dashed #ccc;overflow:hidden;">
 <% end %>
 
 <% if !@page.css.nil? %>
   <style type="text/css"><%= @page.css %></style>
 <% end %>
-<%= @page.body %>
+
+  <%= @page.body %>
 
 <% if !@to_facebook %>
+  </div>
 </body>
 </html>
 <% end %>
