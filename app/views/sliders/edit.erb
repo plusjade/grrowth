@@ -43,7 +43,7 @@
     <div class="notes">
       View the up-to-date rendered slideshow. Edit slides via the <b>"Slides"</b> tab.
     </div>
-    <iframe id="widget-iframe" src ="<%= slider_path(@slider)%>" width="100%" height="800px">Iframe not Supported</iframe>
+    <div id="widget-view-container" rel="<%= @slider.id %>">&#160;</div>
   </div>
 
   <div id="tab-widget-slides" class="widget-tabs">

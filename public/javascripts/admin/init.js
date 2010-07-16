@@ -1,5 +1,6 @@
 ;$(document).ready(function(){
   var loading = '<div class="loading">Loading...</div>';
+  var $iframe = $('<iframe width="100%" height="800px">Iframe not Supported</iframe>');
   function newSlide(index){ return '<li>Slide '+ index +' <a href="#" class="remove">[x]</a><textarea id="slider_slides_'+ index +' " name="slider_slides['+ index +']" style="display:none">slide number: '+ index +'</textarea></li>';};
   function newSlider(s) { return '<option value="/sliders/'+s.id+'/edit">'+s.name+' => <b>[#slider:'+s.id+']</b></option>'};
 
@@ -52,10 +53,10 @@
       $('div.tab-content').hide();
       $('#page-tabs li a').removeClass('active');
       $(e.target).addClass('active');
-      var $tab = $('#'+ $(e.target).attr('rel'));
-      $tab.show();
+      $('#'+ $(e.target).attr('rel')).show();
       if(e.target.id == 'reload-iframe'){
-        document.getElementById('page-iframe').contentWindow.location.reload();     
+        var $container = $('#page-view-container');
+        $container.html($iframe.clone().attr('src', '/deploy/preview/'+ $container.attr('rel')));
       }
       return false;
     },
@@ -67,7 +68,8 @@
       $(e.target).addClass('active');
       $('#'+ $(e.target).attr('rel')).show();
       if(e.target.id == 'reload-widget-iframe'){
-        document.getElementById('widget-iframe').contentWindow.location.reload();
+        var $container = $('#widget-view-container');
+        $container.html($iframe.clone().attr('src', '/sliders/'+ $container.attr('rel')));
       }
       return false;
     },

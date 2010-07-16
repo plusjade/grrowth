@@ -41,7 +41,7 @@
         <div style="text-align:right">
           <%= link_to '[Delete this page!]', page_path(@page), :class => 'delete', :rel => 'pages' %>
         </div>
-        <iframe id="page-iframe" src ="/deploy/preview/<%= @page.preview_key %>" width="100%" height="800px">Iframe not Supported</iframe>
+        <div id="page-view-container" rel="<%= @page.preview_key %>">&#160;</div>
       </div>
         
       <div id="tab-body" class="tab-content">
