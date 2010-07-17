@@ -9,29 +9,18 @@
   <%= javascript_include_tag "admin/init" %>
 </head>
 <body>
-  <div id="wrapper">
-    <table id="top-bar">
-      <tr>
-        <td>
-          <ul id="admin-links">
-            <li><%= link_to 'Account', account_path, :rel => 'facebox' %></li>
-            <li><%= link_to 'Logout', '/user_sessions/destroy' %></li>
-            <li><%= link_to 'My Pages', pages_path, :rel => 'facebox' %></li>
-          </ul>        
-        </td>
-        <td id="status">
-          <div id="submitting" style="display:none">Submitting..</div>
-          <div class="responding">&#160;</div>
-        </td>
-      </tr>
-    </table> 
-    <div id="header">&#160;</div>
-    <span id="holder"><%= yield %></span>
+  <div id="status-wrapper">
+    <div id="status-bar">
+      <div id="submitting" style="display:none">Submitting..</div>
+      <div class="responding" style="display:none">&#160;</div>
+    </div>
   </div>
-  
+  <span id="holder">&#160;</span>
   <script type="text/javascript">
     $(function(){
-      $('#admin-links li a:last').click();
+      $.facebox(function(){ 
+        $.get('/pages', function(view) { $.facebox(view) })
+      })
     });
   </script>  
 </body>

@@ -1,6 +1,13 @@
 
-<% form_for @page do |f| %>
 
+<div id="header">
+  <ul id="admin-links">
+    <li><%= link_to 'Account', account_path, :rel => 'facebox' %></li>
+    <li><%= link_to 'Logout', '/user_sessions/destroy' %></li>
+    <li><%= link_to 'My Pages', pages_path, :rel => 'facebox' %></li>
+  </ul>
+  
+<% form_for @page do |f| %>
   <table class="page-head">
     <tr>
       <td style="width:230px;">
@@ -11,7 +18,7 @@
         <%= f.label 'FB Page/Profile ID' %> <span class="star_req">*</span>
         <%= f.text_field :fb_sig_page_id, {:rel => 'text_req', :style => 'width:120px' } %>
       </td>
-      <td style="width:120px;">
+      <td style="width:120px;color:#fff;">
         <%= f.label :publish %>
         <%= f.check_box(:publish) %> (yes)
       </td>
@@ -26,14 +33,17 @@
   <%= f.text_area :body, :style => 'display:none' %>
   <%= f.text_area :css, :style => 'display:none' %>
 <% end %>
-      
+
   <ul id="page-tabs">
-    <li title="View the latest rendered output of your page"><a href="#" rel="tab-view" id="reload-iframe">View Page</a></li>
-    <li title="Edit the contents of your page"><a href="#body" rel="tab-body">Body</a></li>
-    <li title="Edit the CSS of your main page"><a href="#css" rel="tab-css">CSS</a></li>
+    <li title="View the latest rendered output of your page"><a href="#" rel="tab-view" id="reload-iframe">Page Preview</a></li>
+    <li title="Edit the contents of your page"><a href="#body" rel="tab-body">Page HTML</a></li>
+    <li title="Edit the CSS of your main page"><a href="#css" rel="tab-css">Page CSS</a></li>
     <li title="Configure widgets to add to your page"><a href="#widget" rel="tab-widget">Widgets</a></li>
   </ul>
+</div>
 
+
+<div id="wrapper">
   <div id="main" rel="<%= @page.id %>">
     <div id="content">
 
@@ -82,4 +92,4 @@
       
     </div>
   </div>
-
+</div>
