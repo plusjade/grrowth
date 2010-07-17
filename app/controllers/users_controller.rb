@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    @user_session = UserSession.new
   end
   
   
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to("/admin")
     else
+      @user_session = UserSession.new
       render :action => :new
     end
   end
@@ -38,6 +40,8 @@ class UsersController < ApplicationController
   
   
   def update
+    return if is_sample_account
+    
     @user = @current_user
     if @user.update_attributes(params[:user])
       render :json => 

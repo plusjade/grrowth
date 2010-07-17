@@ -16,6 +16,11 @@
     </div>
   </div>
   <span id="holder">&#160;</span>
+  <ul id="footer-links">
+    <li><%= link_to 'Account', account_path, :rel => 'facebox' %></li>
+    <li><%= link_to 'Logout', '/user_sessions/destroy' %></li>
+    <li><%= link_to 'My Pages', pages_path, :rel => 'facebox' %></li>
+  </ul>
   <script type="text/javascript">
     $(function(){
       $.facebox(function(){ 

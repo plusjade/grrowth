@@ -89,6 +89,8 @@ class PagesController < ApplicationController
 
 
   def destroy
+    return if is_sample_account
+    
     @page = Page.find(
       params[:id], 
       :conditions => { :user_id => current_user.id }

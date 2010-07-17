@@ -116,7 +116,10 @@ ul#page-tabs li a.widget.active{
 padding-top:10px;
 }
 #tab-widget {padding-top:0;}
-
+#footer-links {list-style:none; margin:auto; text-align:center;}
+#footer-links li { display:inline; margin-right:10px;}
+#footer-links li a {font-weight:bold; color:#ff7676;}
+#footer-links li a:hover {color:#222;}
 
 /* form elements
   ------------------------------------------------------------ */

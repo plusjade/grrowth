@@ -62,7 +62,13 @@ h1.logo a {
 h1.logo:hover {
   
 }
-
+ul.navigation li a:hover,
+ul.navigation li a.active,
+a.button_next:hover,
+button.submit:hover,
+button.submit:focus {
+  background:#ef3e63; /*color-pink*/
+}
 a.button_next,
 button.submit {
   display:inline-block;
@@ -187,6 +193,7 @@ ul li {margin-bottom:10px;}
   width:280px;
   margin:auto;
   overflow:hidden;
+  margin-bottom:20px;
 }
   
 

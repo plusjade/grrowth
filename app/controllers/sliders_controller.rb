@@ -103,6 +103,8 @@ class SlidersController < ApplicationController
   
   
   def destroy
+    return if is_sample_account
+    
     @slider = Slider.find(
       params[:id], 
       :conditions => { :user_id => current_user.id }

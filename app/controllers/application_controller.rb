@@ -56,5 +56,14 @@ class ApplicationController < ActionController::Base
       session[:return_to] = nil
     end
     
-    
+    def is_sample_account
+      if current_user.email == 'sample@sample.com'
+        render :json => 
+        {
+          'status' => 'bad',
+          'msg'    => "Cannot delete sample account data."
+        }
+        return true      
+      end    
+    end
 end
