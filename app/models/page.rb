@@ -19,7 +19,8 @@ h1,h2,h3,h4,h5,h6{margin:0; margin-bottom:10px;}
 h1{font-size:36px;}
 h2{font-size:30px;}
 h3{font-size:24px;}
-h4{font-size:16px;}
+h4{font-size:18px;}
+h5{font-size:16px;}
 p {line-height:1.5em; font-size:14px; margin:0; margin-bottom:10px;}
 
 h1#sample {text-align:center; color:green;} #omit{text-align:center;}
