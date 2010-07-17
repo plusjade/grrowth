@@ -41,6 +41,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sliders
   
   map.connect 'about', :controller => 'home', :action => 'about'
+  map.connect 'privacy', :controller => 'home', :action => 'privacy'
+  map.connect 'terms-of-service', :controller => 'home', :action => 'tos'
   map.root :controller => "home"
 
   # See how all your routes lay out with "rake routes"

@@ -25,7 +25,16 @@
       </ul>
     </div>
     <%= yield %>
-    <div id="footer">&#160;</div>
+    <div id="footer">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Sign Up', new_account_path %></li>
+        <li><a href="/about">About</a></li>
+        <li><%= link_to 'Log in', account_path %></li>
+        <li><a href="/terms-of-service">Terms of Service</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>     
+      </ul>
+    </div>
   </div>
   <script type="text/javascript">
     $(document).ready(function(){
