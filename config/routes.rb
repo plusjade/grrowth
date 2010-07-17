@@ -39,7 +39,8 @@ ActionController::Routing::Routes.draw do |map|
   end
     
   map.resources :sliders
-    
+  
+  map.connect 'about', :controller => 'home', :action => 'about'
   map.root :controller => "home"
 
   # See how all your routes lay out with "rake routes"

@@ -7,6 +7,11 @@ class HomeController < ApplicationController
       render :text => 'Some FBML ehboy!'
       return
     end
+  end
+  
+  
+  def about
+  
     
   end
   
