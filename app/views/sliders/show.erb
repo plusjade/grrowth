@@ -17,6 +17,8 @@
   </style>
 </head>
 <body>
+<small style="color:#555; display:block;text-align:center;">*The dotted line is the max width of the Facebook tab. Only shows in preview mode.*</small>
+<div style="width: 760px; margin:auto; border:1px dashed #ccc;overflow:hidden;">
 <% end %>
 
 <style type="text/css" id="slide-widget"><%= @slider.css.gsub("\n", '') %></style>
@@ -101,6 +103,7 @@
 
 
 <% if @standalone %>
+</div>
 </body>
 </html>
 <% end %>
