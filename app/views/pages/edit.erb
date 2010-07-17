@@ -50,10 +50,14 @@
   </div>
     
   <div id="tab-body" class="tab-content">
+    <div style="margin-bottom:10px; padding:3px;background:#ddf9bc;font-weight:bold; color:#000; text-align:center">
+      Add a slideshow widget to your page by pasting the widget's <b>TOKEN</b> into your page body. An example TOKEN: [#slider:1]
+      <br/>The token is available once you create a new slideshow via the "+ Slideshow" tab
+    </div> 
     <div class="notes">
       Make sure your code is valid XHTML. Facebook is pretty strict.
       Be sure to use the "Facebook Preview" button to ensure your code works in Facebook.
-      <br/>Javascript is not allowed and will be stripped out. Use the "Widgets" tab to create advanced interactions using javascript.
+      <br/>Javascript is not allowed and will be stripped out. Use the available widgets to create advanced interactions using javascript.
     </div>
     <textarea id="page_body_helper"></textarea>
   </div>
@@ -79,11 +83,6 @@
       </select>
       <%= link_to 'New Slideshow', new_page_slider_path(@page), :rel => 'facebox', :style => 'float:left' %>
     </div>
-    
-    <div style="display:none; margin-bottom:10px; padding:3px;background:#ddf9bc;font-weight:bold; color:#000; text-align:center">
-      Add a widget to your page by pasting the widget's <b>TOKEN</b> into your page body. An example TOKEN: [#slider:1]
-    </div>        
-    
     <div id="widget-wrapper">&#160;</div>
   </div>
     
