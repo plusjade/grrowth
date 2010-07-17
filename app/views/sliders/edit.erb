@@ -1,43 +1,46 @@
 
 <% form_for @slider do |f| %>
-  <%= f.error_messages %>
-  <input name="_method" type="hidden" value="put" />
-  <table class="page-head">
-    <tr>
-      <td style="width:130px;">
-        <label>TOKEN:</label>
-        <input type="text" value="[#slider:<%=@slider.id%>]" style="width:80px;" READONLY/>
-      </td>
-      <td style="width:150px;">
-        <%= f.label :name %> <span class="star_req">*</span>
-        <%= f.text_field :name,  {:style => 'width:150px', :rel => 'text_req', :style => 'width:120px' } %>
-      </td>
-      <td style="width:130px;">
-        <%= f.label :width %> <span class="star_req">*</span>
-        <%= f.text_field :width, {:style => 'width:30px', :rel => 'text_req' } %>px
-      </td>
-      
-      <td style="width:130px;">
-        <%= f.label :height %> <span class="star_req">*</span>
-        <%= f.text_field :height,  {:style => 'width:30px', :rel => 'text_req' } %>px
-      </td>
-      
-      <td class="buttons" style="width:60px;">
-        <%= link_to 'delete', slider_path(@slider), :class => 'delete negative', :rel => 'sliders' %>
-      </td>
-               
-      <td class="buttons" style="width:120px;">
-        <button type="submit" class="positive" id="save-slider">Save Slideshow</button>
-      </td>
-    </tr>
-  </table>
+  <div class="widget-header">
+    <%= f.error_messages %>
+    <input name="_method" type="hidden" value="put" />
+    <table class="page-head">
+      <tr>
+        <td style="width:130px;">
+          <label>TOKEN:</label>
+          <input type="text" value="[#slider:<%=@slider.id%>]" style="width:80px;" READONLY/>
+        </td>
+        <td style="width:150px;">
+          <%= f.label :name %> <span class="star_req">*</span>
+          <%= f.text_field :name,  {:style => 'width:150px', :rel => 'text_req', :style => 'width:120px' } %>
+        </td>
+        <td style="width:130px;">
+          <%= f.label :width %> <span class="star_req">*</span>
+          <%= f.text_field :width, {:style => 'width:30px', :rel => 'text_req' } %>px
+        </td>
+        
+        <td style="width:130px;">
+          <%= f.label :height %> <span class="star_req">*</span>
+          <%= f.text_field :height,  {:style => 'width:30px', :rel => 'text_req' } %>px
+        </td>
+        
+        <td class="buttons" style="width:60px;">
+          <%= link_to 'delete', slider_path(@slider), :class => 'delete negative', :rel => 'sliders' %>
+        </td>
+                 
+        <td class="buttons" style="width:120px;">
+          <button type="submit" class="positive" id="save-slider">Save Slideshow</button>
+        </td>
+      </tr>
+    </table>
 
-  <ul id="widget-tabs">
-    <li title="View sample slideshow output"><a href="#" rel="tab-widget-view" id="reload-widget-iframe">View Slideshow</a></li>
-    <li title="Create and edit slides here"><a href="#slides" rel="tab-widget-slides">Slides</a></li>
-    <li title="Edit CSS here"><a href="#css" rel="tab-widget-css">CSS</a></li>
-    <li title="The Basic HTML stucture of your slideshow (READONLY)"><a href="#html" rel="tab-widget-html">Study HTML</a></li>    
-  </ul> 
+    <ul id="widget-tabs">
+      <li title="View sample slideshow output"><a href="#" rel="tab-widget-view" id="reload-widget-iframe">Slideshow Preview</a></li>
+      <li title="Create and edit slides here"><a href="#slides" rel="tab-widget-slides">Edit Slides</a></li>
+      <li title="Edit CSS here"><a href="#css" rel="tab-widget-css">Slideshow CSS</a></li>
+      <li title="The Basic HTML stucture of your slideshow (READONLY)"><a href="#html" rel="tab-widget-html">(Sample Rendered Code)</a></li>    
+    </ul>
+  
+  </div>
 
   <div id="tab-widget-view" class="widget-tabs">
     <div class="notes">

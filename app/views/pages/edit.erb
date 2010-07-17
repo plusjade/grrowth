@@ -1,5 +1,3 @@
-
-
 <div id="header">
   <ul id="admin-links">
     <li><%= link_to 'Account', account_path, :rel => 'facebox' %></li>
@@ -38,58 +36,55 @@
     <li title="View the latest rendered output of your page"><a href="#" rel="tab-view" id="reload-iframe">Page Preview</a></li>
     <li title="Edit the contents of your page"><a href="#body" rel="tab-body">Page HTML</a></li>
     <li title="Edit the CSS of your main page"><a href="#css" rel="tab-css">Page CSS</a></li>
-    <li title="Configure widgets to add to your page"><a href="#widget" rel="tab-widget">Widgets</a></li>
+    <li title="Configure widgets to add to your page"><a href="#widget" rel="tab-widget" class="widget">+ Slideshow</a></li>
   </ul>
 </div>
 
+<div id="main" rel="<%= @page.id %>">
 
-<div id="wrapper">
-  <div id="main" rel="<%= @page.id %>">
-    <div id="content">
-
-      <div id="tab-view" class="tab-content">
-        <div style="text-align:right">
-          <%= link_to '[Delete this page!]', page_path(@page), :class => 'delete', :rel => 'pages' %>
-        </div>
-        <div id="page-view-container" rel="<%= @page.preview_key %>">&#160;</div>
-      </div>
-        
-      <div id="tab-body" class="tab-content">
-        <div class="notes">
-          Make sure your code is valid XHTML. Facebook is pretty strict.
-          Be sure to use the "Facebook Preview" button to ensure your code works in Facebook.
-          <br/>Javascript is not allowed and will be stripped out. Use the "Widgets" tab to create advanced interactions using javascript.
-        </div>
-        <textarea id="page_body_helper"></textarea>
-      </div>
-     
-      <div id="tab-css" class="tab-content">
-        <div class="notes">
-          Add custom CSS here. Note that much of CSS3 is not allowed in facebook but will work in your preview.
-          If your code is not working, the CSS is probably invalid.
-        </div>
-        <textarea id="page_css_helper"></textarea>
-      </div>
-
-      <div id="tab-widget" class="tab-content">
-        <div style="padding:5px;background:#ffffcc;overflow:hidden;">
-          <h3 style="float:left; margin-right:10px;">My Slideshows</h3>
-          <select id="sliders-list" class="widget-list" style="float:left; margin-right:10px;">
-            <option value="0">Select a Slideshow</option>
-          <% @page.sliders.each do |slider| %>
-            <option value="<%=edit_slider_path(slider)%>">
-              <%= slider.name %> [#slider:<%=slider.id%>]
-            </option>
-          <% end %>
-          </select>
-          <%= link_to 'New Slideshow', new_page_slider_path(@page), :rel => 'facebox', :style => 'float:left' %>
-        </div>
-        <div style="margin-bottom:10px; padding:3px;background:#ddf9bc;font-weight:bold; color:#000; text-align:center">
-          Add a widget to your page by pasting the widget's <b>TOKEN</b> into your page body. An example TOKEN: [#slider:1]
-        </div>        
-        <div id="widget-wrapper"></div>
-      </div>
-      
+  <div id="tab-view" class="tab-content">
+    <div style="text-align:right">
+      <%= link_to '[Delete this page!]', page_path(@page), :class => 'delete', :rel => 'pages' %>
     </div>
+    <div id="page-view-container" rel="<%= @page.preview_key %>">&#160;</div>
   </div>
+    
+  <div id="tab-body" class="tab-content">
+    <div class="notes">
+      Make sure your code is valid XHTML. Facebook is pretty strict.
+      Be sure to use the "Facebook Preview" button to ensure your code works in Facebook.
+      <br/>Javascript is not allowed and will be stripped out. Use the "Widgets" tab to create advanced interactions using javascript.
+    </div>
+    <textarea id="page_body_helper"></textarea>
+  </div>
+ 
+  <div id="tab-css" class="tab-content">
+    <div class="notes">
+      Add custom CSS here. Note that much of CSS3 is not allowed in facebook but will work in your preview.
+      If your code is not working, the CSS is probably invalid.
+    </div>
+    <textarea id="page_css_helper"></textarea>
+  </div>
+
+  <div id="tab-widget" class="tab-content">
+    <div id="slideshow-chooser">
+      <h4>Slideshow Widgets</h4>
+      <select id="sliders-list" class="widget-list">
+        <option value="0">Select a Slideshow</option>
+      <% @page.sliders.each do |slider| %>
+        <option value="<%=edit_slider_path(slider)%>">
+          <%= slider.name %> [#slider:<%=slider.id%>]
+        </option>
+      <% end %>
+      </select>
+      <%= link_to 'New Slideshow', new_page_slider_path(@page), :rel => 'facebox', :style => 'float:left' %>
+    </div>
+    
+    <div style="display:none; margin-bottom:10px; padding:3px;background:#ddf9bc;font-weight:bold; color:#000; text-align:center">
+      Add a widget to your page by pasting the widget's <b>TOKEN</b> into your page body. An example TOKEN: [#slider:1]
+    </div>        
+    
+    <div id="widget-wrapper">&#160;</div>
+  </div>
+    
 </div>
