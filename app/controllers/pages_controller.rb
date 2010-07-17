@@ -65,7 +65,8 @@ class PagesController < ApplicationController
       params[:id], 
       :conditions => { :user_id => current_user.id }
     )
-
+    return if is_quickstart_guide(@page)
+    
     if @page.update_attributes(params[:page])
       render :json => 
       {

@@ -81,7 +81,8 @@ class SlidersController < ApplicationController
       params[:id],
       :conditions => { :user_id => current_user.id }
     ) 
-
+    return if is_quickstart_guide(@slider) 
+    
     slides = Array.new
     params[:slider_slides].each { |key, value| slides[key.to_i] = (value) } if ( !params[:slider_slides].nil? && params[:slider_slides].is_a?(Object) )
     params[:slider][:slides] = slides.compact.to_json

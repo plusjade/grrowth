@@ -55,7 +55,18 @@ class ApplicationController < ActionController::Base
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
-    
+
+    def updating_sample_account
+      if current_user.email == 'sample@sample.com'
+        render :json => 
+        {
+          'status' => 'bad',
+          'msg'    => "Cannot delete sample account data."
+        }
+        return true      
+      end    
+    end
+        
     def is_sample_account
       if current_user.email == 'sample@sample.com'
         render :json => 
@@ -66,4 +77,17 @@ class ApplicationController < ActionController::Base
         return true      
       end    
     end
+
+    # checking for quickstart slideshow in sample account.
+    def is_quickstart_guide(resource)
+      if resource.id == 8
+        render :json => 
+        {
+          'status' => 'bad',
+          'msg'    => "The Quickstart Guide is Readonly. Please create new pages and slideshows."
+        }
+        return true      
+      end    
+    end
+        
 end
