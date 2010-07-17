@@ -28,6 +28,7 @@ class Slider < ActiveRecord::Base
   color:#fff;
   font-size:14px;
  }
+#slideshow-wrapper h1, h2, h3 {color:#fff;}
 #gallery div.each-slide span.slide-container h2{margin:0; margin-bottom:10px; text-align:center;}
 #gallery ol li{ margin-bottom:10px;}
 /* back, next and reset links are styled here:
